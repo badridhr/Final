@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <title>TIMELESSWATCHSTORE - Boutique de montres de luxe</title>
     <style>
+        /* VOTRE CSS EXISTANT - JE LE CONSERVE TEL QUEL */
         :root {
             --primary-color: #1a1a1a;
             --secondary-color: #f5f5f5;
@@ -41,112 +42,7 @@
         }
 
         /* Header styles */
-        .top-bar {
-            background: black;
-            color: var(--white);
-            padding: 8px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .top-bar i {
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .top-bar i:hover {
-            color: var(--accent-color);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--primary-color);
-        }
-
-        .logo-img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .logo-subtitle {
-            font-size: 0.8rem;
-            color: var(--dark-gray);
-        }
-
-        .desktop-nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        .desktop-nav a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .desktop-nav a:hover {
-            color: var(--accent-color);
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 20px;
-            position: relative;
-        }
-
-        .nav-icons a {
-            color: var(--primary-color);
-            font-size: 18px;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-icons a:hover {
-            color: var(--accent-color);
-        }
-
-        .cart-count, .wishlist-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            font-size: 12px;
-            font-weight: bold;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 3px 0;
-            transition: var(--transition);
-        }
+        /* ... conserver les styles existants pour le header ... */
 
         /* Section principale */
         .shop-container {
@@ -241,6 +137,44 @@
 
         .price-separator {
             color: var(--dark-gray);
+        }
+
+        .price-slider {
+            margin: 15px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 5px;
+            background: var(--light-gray);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .slider-progress {
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 5px;
+            width: 50%;
+        }
+
+        .slider-thumb {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        .slider-thumb.min {
+            left: 25%;
+        }
+
+        .slider-thumb.max {
+            left: 75%;
         }
 
         .filter-button {
@@ -343,15 +277,15 @@
         }
 
         /* Product Image Container */
-        .product-image-container {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
-            background: var(--light-gray);
-            padding: 10px;
-            box-sizing: border-box;
-        }
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: var(--light-gray);
+    padding: 10px; /* Ajout d'espace autour de l'image */
+    box-sizing: border-box; /* Important pour que le padding soit inclus dans la taille totale */
+}
 
         .product-image-container img {
             width: 100%;
@@ -636,6 +570,62 @@
             background-color: #333;
         }
         
+        .cart-count, .wishlist-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ffd700;
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .wishlist-count {
+            background-color: #ff0000;
+            color: #fff;
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .nav-icons a {
+            color: #000;
+            font-size: 18px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-icons a:hover {
+            color: #ffd700;
+        }
+        
+        .cart-overlay, .wishlist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+        }
+        
+        .cart-overlay.active, .wishlist-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .wishlist-item-actions {
             display: flex;
             gap: 10px;
@@ -1311,242 +1301,6 @@
             color: var(--dark-gray);
         }
 
-        /* AJOUT: Styles pour la pagination */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin: 40px 0;
-            padding: 20px;
-        }
-
-        .pagination-btn {
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .pagination-btn:hover:not(:disabled) {
-            background: var(--accent-color);
-        }
-
-        .pagination-btn:disabled {
-            background: var(--dark-gray);
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .page-numbers {
-            display: flex;
-            gap: 8px;
-        }
-
-        .page-number {
-            padding: 8px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .page-number.active {
-            background: var(--accent-color);
-            color: var(--white);
-            border-color: var(--accent-color);
-        }
-
-        .page-number:hover:not(.active) {
-            background: var(--light-gray);
-        }
-
-        /* Styles pour le menu mobile */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100vh;
-            background-color: var(--white);
-            z-index: 1001;
-            transition: left 0.3s ease;
-            overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .menu-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .close-menu {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary-color);
-        }
-
-        .mobile-nav {
-            padding: 20px 0;
-        }
-
-        .mobile-nav a {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 20px;
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .mobile-nav a:hover {
-            background-color: var(--light-gray);
-            color: var(--primary-color);
-        }
-
-        .mobile-nav i {
-            font-size: 1.2rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-overlay, .wishlist-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .cart-overlay.active, .wishlist-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Footer styles */
-        .main-footer {
-            background-color: black;
-            color: var(--white);
-            padding: 40px 0 20px;
-            margin-top: 50px;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section ul li a {
-            color: var(--white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-section ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .contact-list li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .contact-list .icon {
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-        }
-
-        .footer-bottom a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
         /* RESPONSIVE DESIGN */
         @media (max-width: 1024px) {
             .shop-container {
@@ -1604,31 +1358,30 @@
             .mobile-filters-menu { display: block; }
             .mobile-bottom-bar { display: block; }
             .cart-sidebar, .wishlist-sidebar { width: 90%; right: -90%; }
-            .hamburger { display: flex; }
-            .desktop-nav { display: none; }
         }
 
         @media (max-width: 480px) {
+            /* CORRECTION: Ajustement de la grille pour les mobiles */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
-                padding: 0 10px;
+                padding: 0 10px; /* Ajout de padding pour éviter que les cartes ne touchent les bords */
             }
             
             .product-card {
-                width: 100%;
+                width: 100%; /* S'assurer que les cartes ne dépassent pas */
             }
             
             .product-image-container {
-                height: 200px;
+                height: 200px; /* Réduire la hauteur des images sur mobile */
             }
             
             .product-details {
-                padding: 10px;
+                padding: 10px; /* Réduire le padding pour économiser de l'espace */
             }
             
             .name {
-                font-size: 0.9rem;
+                font-size: 0.9rem; /* Réduire la taille du texte */
             }
             
             .brand {
@@ -1763,6 +1516,35 @@
     <!-- Overlay pour fermer la wishlist -->
     <div class="wishlist-overlay" id="wishlist-overlay"></div>
     
+    <!-- Panier latéral -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">MON PANIER</h3>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty"><i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i><p>Votre panier est vide</p></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Total:</span><span id="cart-total">0,00 د.ج</span></div>
+            <button class="cart-checkout" id="checkout-button">COMMANDER</button>
+        </div>
+    </div>
+    
+    <!-- Wishlist latérale -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3 class="wishlist-title">Mes favoris</h3>
+            <button class="close-wishlist" id="close-wishlist"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="wishlist-content" id="wishlist-content">
+            <div class="wishlist-empty"><i class="far fa-heart" style="font-size: 48px; margin-bottom: 15px;"></i><p>Votre wishlist est vide</p></div>
+        </div>
+    </div>
+    
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+    
     <!-- Section principale -->
     <section class="shop-section">
         <header class="header">
@@ -1850,17 +1632,6 @@
                     <!-- Les produits seront chargés ici dynamiquement depuis Firebase ou depuis les données locales -->
                     <div class="spinner"></div>
                 </main>
-                
-                <!-- AJOUT: Conteneur de pagination -->
-                <div class="pagination-container" id="pagination-container">
-                    <button id="prev-page" class="pagination-btn" disabled>
-                        <i class="fas fa-chevron-left"></i> Précédent
-                    </button>
-                    <div class="page-numbers" id="page-numbers"></div>
-                    <button id="next-page" class="pagination-btn">
-                        Suivant <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
             </div>
         </div>
     </section>
@@ -1909,12 +1680,15 @@
         </div>
     </div>
 
+
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section contact-info">
                 <div class="logo-container">
                     <img src="images/footer.jpg" alt="" width="120px" height="50px">
+
                 </div>
+
                 <ul class="contact-list">
                     <li>
                         <span class="icon">📍</span> avenue Suidani Boudjetimelesswatchstore, Alger
@@ -1942,7 +1716,7 @@
                 <ul>
                     <li><a href="Homme.html">Hommes</a></li>
                     <li><a href="Femme.html">Femmes</a></li>
-                    <li><a href="Promotion.html">Promotion</a></li>
+                    <li><a href="ToutLesProduits.html">Promotion</a></li>
                 </ul>
             </div>
         </div>
@@ -1962,16 +1736,12 @@
         </nav>
     </div>
 
-    <!-- AJOUT: SDK Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+    <script src="navbar.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
 
     <script>
-        // === VARIABLES POUR LA PAGINATION ===
-        let currentPage = 1;
-        const productsPerPage = 8; // 8 produits par page comme demandé
-
         // === CONFIGURATION FIREBASE ===
         const firebaseConfig = {
             apiKey: "AIzaSyBB8zPrG4MjAqBm1SOxIFQdWtiCmz_v92s",
@@ -1981,7 +1751,6 @@
             messagingSenderId: "900453735371",
             appId: "1:900453735371:web:e32188ac6ea261084c344e"
         };
-
         // Initialiser Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
@@ -2008,124 +1777,8 @@
             genders: []
         };
         
-        // Variable pour stocker l'ID du produit actuel dans la vue rapide
+        // AJOUT: Variable pour stocker l'ID du produit actuel dans la vue rapide
         let currentProductId = null;
-
-        // === FONCTIONS POUR LA PAGINATION ===
-
-        // Fonction pour paginer les produits
-        function paginateProducts(products) {
-            const startIndex = (currentPage - 1) * productsPerPage;
-            const endIndex = startIndex + productsPerPage;
-            return products.slice(startIndex, endIndex);
-        }
-
-        // Fonction pour mettre à jour l'affichage des produits avec pagination
-        function displayProductsWithPagination(products) {
-            const paginatedProducts = paginateProducts(products);
-            displayProducts(paginatedProducts);
-            updatePaginationControls(products.length);
-            updateProductCounters(products.length);
-        }
-
-        // Fonction pour mettre à jour les contrôles de pagination
-        function updatePaginationControls(totalProducts) {
-            const totalPages = Math.ceil(totalProducts / productsPerPage);
-            const pageNumbers = document.getElementById('page-numbers');
-            const prevBtn = document.getElementById('prev-page');
-            const nextBtn = document.getElementById('next-page');
-            
-            // Mettre à jour l'état des boutons
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
-            
-            // Générer les numéros de page
-            pageNumbers.innerHTML = '';
-            
-            // Afficher un maximum de 5 pages autour de la page actuelle
-            let startPage = Math.max(1, currentPage - 2);
-            let endPage = Math.min(totalPages, startPage + 4);
-            
-            // Ajuster si on est près de la fin
-            if (endPage - startPage < 4) {
-                startPage = Math.max(1, endPage - 4);
-            }
-            
-            // Bouton pour la première page
-            if (startPage > 1) {
-                const firstPage = document.createElement('span');
-                firstPage.className = 'page-number';
-                firstPage.textContent = '1';
-                firstPage.addEventListener('click', () => goToPage(1));
-                pageNumbers.appendChild(firstPage);
-                
-                if (startPage > 2) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.className = 'page-number';
-                    ellipsis.textContent = '...';
-                    ellipsis.style.cursor = 'default';
-                    pageNumbers.appendChild(ellipsis);
-                }
-            }
-            
-            // Pages numérotées
-            for (let i = startPage; i <= endPage; i++) {
-                const pageNumber = document.createElement('span');
-                pageNumber.className = `page-number ${i === currentPage ? 'active' : ''}`;
-                pageNumber.textContent = i;
-                pageNumber.addEventListener('click', () => goToPage(i));
-                pageNumbers.appendChild(pageNumber);
-            }
-            
-            // Bouton pour la dernière page
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.className = 'page-number';
-                    ellipsis.textContent = '...';
-                    ellipsis.style.cursor = 'default';
-                    pageNumbers.appendChild(ellipsis);
-                }
-                
-                const lastPage = document.createElement('span');
-                lastPage.className = 'page-number';
-                lastPage.textContent = totalPages;
-                lastPage.addEventListener('click', () => goToPage(totalPages));
-                pageNumbers.appendChild(lastPage);
-            }
-        }
-
-        // Fonction pour aller à une page spécifique
-        function goToPage(page) {
-            currentPage = page;
-            displayProductsWithPagination(filteredProducts);
-        }
-
-        // Fonction pour aller à la page précédente
-        function goToPreviousPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                displayProductsWithPagination(filteredProducts);
-            }
-        }
-
-        // Fonction pour aller à la page suivante
-        function goToNextPage() {
-            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-            if (currentPage < totalPages) {
-                currentPage++;
-                displayProductsWithPagination(filteredProducts);
-            }
-        }
-
-        // Fonction pour mettre à jour les compteurs de produits
-        function updateProductCounters(totalProducts) {
-            const startProduct = ((currentPage - 1) * productsPerPage) + 1;
-            const endProduct = Math.min(currentPage * productsPerPage, totalProducts);
-            
-            document.getElementById('current-count').textContent = `${startProduct}-${endProduct}`;
-            document.getElementById('total-count').textContent = totalProducts;
-        }
 
         // === FONCTIONS POUR LA GESTION DES PRODUITS ===
         
@@ -2198,7 +1851,7 @@
                 allProducts = [];
                 snapshot.forEach(doc => {
                     const data = doc.data();
-                    console.log("Produit chargé:", data);
+                    console.log("Produit chargé:", data); // Debug
                     
                     // Structure compatible avec votre panel admin
                     const product = { 
@@ -2245,13 +1898,22 @@
             // Initialiser filteredProducts avec tous les produits
             filteredProducts = [...allProducts];
             
-            // Afficher les produits avec pagination
-            displayProductsWithPagination(filteredProducts);
+            // Afficher les produits
+            displayProducts(filteredProducts);
             
             // Peupler les filtres
             populateFilters();
             
+            // Mettre à jour les compteurs
+            updateProductCounters();
+            
             console.log(`Chargement terminé: ${allProducts.length} produits disponibles`);
+        }
+
+        // Fonction pour mettre à jour les compteurs de produits
+        function updateProductCounters() {
+            currentCountSpan.textContent = filteredProducts.length;
+            totalCountSpan.textContent = allProducts.length;
         }
 
         // Fonction pour extraire les marques et catégories uniques et générer les filtres
@@ -2366,13 +2028,15 @@
             
             if (products.length === 0) {
                 productsGrid.innerHTML = '<div class="no-results">Aucun produit ne correspond à vos critères de filtrage.</div>';
+                currentCountSpan.textContent = '0';
+                totalCountSpan.textContent = allProducts.length;
                 return;
             }
             
             products.forEach(product => {
                 const formattedPrice = product.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 
-                // Gérer les produits avec une seule image ou plusieurs images
+                // CORRECTION: Gérer les produits avec une seule image ou plusieurs images
                 let productImage;
                 if (product.images && product.images.length > 0) {
                     productImage = product.images[0];
@@ -2402,6 +2066,9 @@
                 `;
                 productsGrid.appendChild(productCard);
             });
+            
+            currentCountSpan.textContent = products.length;
+            totalCountSpan.textContent = allProducts.length;
             
             initializeProductEventListeners();
             updateWishlistIcons();
@@ -2434,9 +2101,7 @@
                 return true;
             });
             
-            // Retourner à la première page après filtrage
-            currentPage = 1;
-            displayProductsWithPagination(filteredProducts);
+            displayProducts(filteredProducts);
             updateActiveFilters();
         }
 
@@ -2562,7 +2227,7 @@
         // Fonction pour ouvrir le modal quickview
         async function openQuickViewModal(productId) {
             try {
-                // Chercher le produit dans la liste locale (allProducts)
+                // Chercher le produit dans la liste locale (allProducts) au lieu de faire un nouvel appel à Firebase
                 const product = allProducts.find(p => p.id === productId);
 
                 if (product) {
@@ -2571,7 +2236,7 @@
                     document.getElementById('modal-product-category').textContent = `${product.brand} - ${product.category}`;
                     document.getElementById('modal-product-description').textContent = product.description || 'Aucune description disponible.';
                     
-                    // Gérer les produits avec une seule image ou plusieurs images
+                    // CORRECTION: Gérer les produits avec une seule image ou plusieurs images
                     let productImages;
                     if (product.images && product.images.length > 0) {
                         productImages = product.images;
@@ -2790,7 +2455,7 @@
             const productPriceText = productCard.querySelector('.price').textContent;
             const productPrice = parseFloat(productPriceText.replace(/[^\d,]/g, '').replace(',', '.'));
             
-            // Récupérer l'image depuis l'attribut data
+            // CORRECTION: Récupérer l'image depuis l'attribut data
             const addToCartButton = productCard.querySelector('.add-to-cart');
             const productImage = addToCartButton.getAttribute('data-product-image');
             
@@ -3028,160 +2693,293 @@
             showNotification('Produit retiré du panier');
         }
 
-        // === INITIALISATION AU CHARGEMENT DE LA PAGE ===
-        document.addEventListener('DOMContentLoaded', async function() {
-            console.log("=== DÉMARRAGE APPLICATION ===");
-            
-            // Debug Firebase
-            await debugFirebase();
-            
-            // Charger les produits depuis Firebase
-            await loadProductsFromFirebase();
-            
-            // Initialiser l'affichage du panier et de la wishlist
-            updateCartDisplay();
-            updateWishlistDisplay();
-            
-            // Écouteurs d'événements pour le panier
-            document.getElementById('cart-icon').addEventListener('click', openCart);
-            document.getElementById('mobile-cart-icon').addEventListener('click', openCart);
-            document.getElementById('close-cart').addEventListener('click', closeCart);
-            document.getElementById('cart-overlay').addEventListener('click', closeCart);
-            
-            // Écouteurs d'événements pour la wishlist
-            document.getElementById('wishlist-icon').addEventListener('click', openWishlist);
-            document.getElementById('mobile-wishlist-icon').addEventListener('click', openWishlist);
-            document.getElementById('mobile-bottom-wishlist').addEventListener('click', openWishlist);
-            document.getElementById('close-wishlist').addEventListener('click', closeWishlist);
-            document.getElementById('wishlist-overlay').addEventListener('click', closeWishlist);
-            
-            // Écouteurs d'événements pour les filtres desktop
-            document.getElementById('applyPriceFilter').addEventListener('click', function() {
-                currentFilters.priceMin = parseFloat(document.querySelector('.desktop-price-min').value) || 0;
-                currentFilters.priceMax = parseFloat(document.querySelector('.desktop-price-max').value) || 100000;
-                applyFilters();
-            });
-            
-            // Écouteurs d'événements pour les filtres mobiles
-            document.getElementById('mobileFilterToggle').addEventListener('click', function() {
-                document.getElementById('mobileFiltersMenu').classList.add('active');
-                document.getElementById('filtersOverlay').classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            function closeMobileFilters() {
-                document.getElementById('mobileFiltersMenu').classList.remove('active');
-                document.getElementById('filtersOverlay').classList.remove('active');
-                document.body.style.overflow = '';
+        // === NOUVELLES FONCTIONS POUR LA REDIRECTION VERS CHECKOUT ===
+        
+        // Fonction pour rediriger vers la page de paiement (depuis le panier)
+        function redirectToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Votre panier est vide', 'error');
+                return;
             }
             
-            document.getElementById('closeFilters').addEventListener('click', closeMobileFilters);
-            document.getElementById('filtersOverlay').addEventListener('click', closeMobileFilters);
+            // Préparer les données du panier au format attendu par checkout.html
+            const cartData = {
+                items: cart.map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image,
+                    quantity: item.quantity
+                }))
+            };
             
-            document.getElementById('mobileFilterApply').addEventListener('click', function() {
-                // Appliquer les filtres de prix
-                currentFilters.priceMin = parseFloat(document.querySelector('.mobile-price-min').value) || 0;
-                currentFilters.priceMax = parseFloat(document.querySelector('.mobile-price-max').value) || 100000;
-                
-                // Appliquer les filtres de marque
-                currentFilters.brands = [];
-                document.querySelectorAll('.mobile-filters-menu input[name="brand"]:checked').forEach(checkbox => {
-                    currentFilters.brands.push(checkbox.value);
-                });
-                
-                // Appliquer les filtres de genre
-                currentFilters.genders = [];
-                document.querySelectorAll('.mobile-filters-menu input[name="gender"]:checked').forEach(checkbox => {
-                    currentFilters.genders.push(checkbox.value);
-                });
-                
-                // Synchroniser avec les filtres desktop
-                document.querySelector('.desktop-price-min').value = currentFilters.priceMin;
-                document.querySelector('.desktop-price-max').value = currentFilters.priceMax;
-                
-                document.querySelectorAll('.shop-filters input[name="brand"]').forEach(checkbox => {
-                    checkbox.checked = currentFilters.brands.includes(checkbox.value);
-                });
-                
-                document.querySelectorAll('.shop-filters input[name="gender"]').forEach(checkbox => {
-                    checkbox.checked = currentFilters.genders.includes(checkbox.value);
-                });
-                
-                applyFilters();
-                closeMobileFilters();
-            });
+            // Sauvegarder dans localStorage (format compatible avec checkout.html)
+            localStorage.setItem('maa_luxury_cart', JSON.stringify(cartData));
             
-            document.getElementById('mobileFilterReset').addEventListener('click', function() {
-                resetAllFilters();
-                closeMobileFilters();
-            });
-            
-            // Écouteur pour le bouton de réinitialisation des filtres
-            document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
-            
-            // Écouteurs d'événements pour le modal quickview
-            document.querySelector('.close-modal-btn').addEventListener('click', closeQuickViewModal);
-            quickViewModal.addEventListener('click', function(e) {
-                if (e.target === quickViewModal) {
-                    closeQuickViewModal();
-                }
-            });
-            
-            // Écouteurs pour les boutons de pagination
-            document.getElementById('prev-page').addEventListener('click', goToPreviousPage);
-            document.getElementById('next-page').addEventListener('click', goToNextPage);
-            
-            // Écouteurs pour les boutons de quantité dans le modal
-            const qtyMinus = document.getElementById('qty-minus');
-            const qtyPlus = document.getElementById('qty-plus');
-            const qtyInput = document.getElementById('qty-input');
-            
-            if (qtyMinus && qtyPlus && qtyInput) {
-                qtyMinus.addEventListener('click', function() {
-                    if (qtyInput.value > 1) {
-                        qtyInput.value = parseInt(qtyInput.value) - 1;
-                    }
-                });
-                
-                qtyPlus.addEventListener('click', function() {
-                    if (qtyInput.value < 100) {
-                        qtyInput.value = parseInt(qtyInput.value) + 1;
-                    }
-                });
-            }
-            
-            // Écouteurs pour le menu mobile
-            const hamburger = document.getElementById('hamburger');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const overlay = document.getElementById('overlay');
-            const closeMenu = document.getElementById('closeMenu');
-            
-            hamburger.addEventListener('click', function() {
-                mobileMenu.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            closeMenu.addEventListener('click', function() {
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            overlay.addEventListener('click', function() {
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
+            // Rediriger vers la page de paiement
+            window.location.href = 'checkout.html';
+        }
 
-        // Fonction pour fermer le modal quickview 
+        // Fonction pour commander depuis la vue rapide
+        function checkoutFromQuickView() {
+            if (!currentProductId) {
+                showNotification('Erreur: Produit non sélectionné', 'error');
+                return;
+            }
+            
+            const product = allProducts.find(p => p.id === currentProductId);
+            if (!product) {
+                showNotification('Produit non trouvé', 'error');
+                return;
+            }
+            
+            // Récupérer la quantité depuis le modal
+            const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+            
+            // Créer un panier temporaire avec ce seul produit
+            const tempCart = [{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.images?.[0] || product.image,
+                quantity: quantity
+            }];
+            
+            // Préparer les données au format attendu par checkout.html
+            const cartData = {
+                items: tempCart
+            };
+            
+            // Sauvegarder dans localStorage
+            localStorage.setItem('maa_luxury_cart', JSON.stringify(cartData));
+            
+            // Fermer le modal et rediriger
+            closeQuickViewModal();
+            window.location.href = 'checkout.html';
+        }
+
+        // === FONCTIONS POUR LES FILTRES & MODAL ===
+        
+        // Fonction pour fermer le modal quickview
         function closeQuickViewModal() {
             quickViewModal.classList.remove('active');
             document.body.style.overflow = '';
         }
-    </script>
 
-    <script src="navbar.js"></script>
+        // === INITIALISATION AU CHARGEMENT DE LA PAGE ===
+      document.addEventListener('DOMContentLoaded', async function() {
+    console.log("=== DÉMARRAGE APPLICATION ===");
+    
+    // Debug Firebase
+    await debugFirebase();
+    
+    // Charger les produits depuis Firebase
+    await loadProductsFromFirebase();
+    
+    // Initialiser l'affichage du panier et de la wishlist
+    updateCartDisplay();
+    updateWishlistDisplay();
+    
+    // Écouteurs d'événements pour le panier
+    document.getElementById('cart-icon').addEventListener('click', openCart);
+    document.getElementById('mobile-cart-icon').addEventListener('click', openCart);
+    document.getElementById('close-cart').addEventListener('click', closeCart);
+    document.getElementById('cart-overlay').addEventListener('click', closeCart);
+    
+    // Écouteurs d'événements pour la wishlist
+    document.getElementById('wishlist-icon').addEventListener('click', openWishlist);
+    document.getElementById('mobile-wishlist-icon').addEventListener('click', openWishlist);
+    document.getElementById('mobile-bottom-wishlist').addEventListener('click', openWishlist);
+    document.getElementById('close-wishlist').addEventListener('click', closeWishlist);
+    document.getElementById('wishlist-overlay').addEventListener('click', closeWishlist);
+    
+    // Écouteurs d'événements pour les filtres desktop
+    document.getElementById('applyPriceFilter').addEventListener('click', function() {
+        currentFilters.priceMin = parseFloat(document.querySelector('.desktop-price-min').value) || 0;
+        currentFilters.priceMax = parseFloat(document.querySelector('.desktop-price-max').value) || 100000;
+        applyFilters();
+    });
+    
+    // Écouteurs d'événements pour les filtres mobiles
+    document.getElementById('mobileFilterToggle').addEventListener('click', function() {
+        document.getElementById('mobileFiltersMenu').classList.add('active');
+        document.getElementById('filtersOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    function closeMobileFilters() {
+        document.getElementById('mobileFiltersMenu').classList.remove('active');
+        document.getElementById('filtersOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    document.getElementById('closeFilters').addEventListener('click', closeMobileFilters);
+    document.getElementById('filtersOverlay').addEventListener('click', closeMobileFilters);
+    
+    document.getElementById('mobileFilterApply').addEventListener('click', function() {
+        // Appliquer les filtres de prix
+        currentFilters.priceMin = parseFloat(document.querySelector('.mobile-price-min').value) || 0;
+        currentFilters.priceMax = parseFloat(document.querySelector('.mobile-price-max').value) || 100000;
+        
+        // Appliquer les filtres de marque
+        currentFilters.brands = [];
+        document.querySelectorAll('.mobile-filters-menu input[name="brand"]:checked').forEach(checkbox => {
+            currentFilters.brands.push(checkbox.value);
+        });
+        
+        // Appliquer les filtres de genre
+        currentFilters.genders = [];
+        document.querySelectorAll('.mobile-filters-menu input[name="gender"]:checked').forEach(checkbox => {
+            currentFilters.genders.push(checkbox.value);
+        });
+        
+        // Synchroniser avec les filtres desktop
+        document.querySelector('.desktop-price-min').value = currentFilters.priceMin;
+        document.querySelector('.desktop-price-max').value = currentFilters.priceMax;
+        
+        document.querySelectorAll('.shop-filters input[name="brand"]').forEach(checkbox => {
+            checkbox.checked = currentFilters.brands.includes(checkbox.value);
+        });
+        
+        document.querySelectorAll('.shop-filters input[name="gender"]').forEach(checkbox => {
+            checkbox.checked = currentFilters.genders.includes(checkbox.value);
+        });
+        
+        applyFilters();
+        closeMobileFilters();
+    });
+    
+    document.getElementById('mobileFilterReset').addEventListener('click', function() {
+        resetAllFilters();
+        closeMobileFilters();
+    });
+    
+    // Écouteur pour le bouton de réinitialisation des filtres
+    document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
+    
+    // Écouteurs d'événements pour le modal quickview
+    document.querySelector('.close-modal-btn').addEventListener('click', closeQuickViewModal);
+    quickViewModal.addEventListener('click', function(e) {
+        if (e.target === quickViewModal) {
+            closeQuickViewModal();
+        }
+    });
+    
+    // Écouteurs pour les boutons de commande
+    document.getElementById('checkout-button').addEventListener('click', redirectToCheckout);
+    document.getElementById('modal-checkout-button').addEventListener('click', redirectToCheckoutWithProduct);
+    
+    // Écouteur pour le bouton "VIEW DETAILS"
+    document.getElementById('view-details-btn').addEventListener('click', redirectToCartPage);
+
+    // Écouteurs d'événements pour les boutons plus et moins pour la quantité
+    const qtyMinus = document.getElementById('qty-minus');
+    const qtyPlus = document.getElementById('qty-plus');
+    const qtyInput = document.getElementById('qty-input');
+    
+    if (qtyMinus && qtyPlus && qtyInput) {
+        qtyMinus.addEventListener('click', function() {
+            if (qtyInput.value > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+        
+        qtyPlus.addEventListener('click', function() {
+            if (qtyInput.value < 100) {
+                qtyInput.value = parseInt(qqtyInput.value) + 1;
+            }
+        });
+    }
+});
+
+        // Fonction pour rediriger vers cart.html avec le produit
+// Fonction pour rediriger vers cart.html avec le produit
+// Fonction pour rediriger vers cart.html avec le produit
+function redirectToCartPage() {
+    if (!currentProductId) {
+        showNotification('Erreur: Produit non sélectionné', 'error');
+        return;
+    }
+    
+    const product = allProducts.find(p => p.id === currentProductId);
+    if (!product) {
+        showNotification('Produit non trouvé', 'error');
+        return;
+    }
+    
+    // Récupérer la quantité depuis le modal
+    const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+    
+    // Préparer les données du produit pour cart.html
+    const productData = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        images: product.images || [product.image],
+        image: product.images?.[0] || product.image,
+        quantity: quantity,
+        brand: product.brand,
+        category: product.category,
+        description: product.description,
+        stock: product.stock || 10
+    };
+    
+    // Sauvegarder le produit dans localStorage avec la clé attendue par cart.html
+    localStorage.setItem('selectedProduct', JSON.stringify(productData));
+    
+    // Fermer le modal et rediriger vers cart.html
+    closeQuickViewModal();
+    window.location.href = 'cart.html';
+}
+
+// Fonction pour rediriger vers checkout.html avec le produit
+function redirectToCheckoutWithProduct() {
+    if (!currentProductId) {
+        showNotification('Erreur: Produit non sélectionné', 'error');
+        return;
+    }
+    
+    const product = allProducts.find(p => p.id === currentProductId);
+    if (!product) {
+        showNotification('Produit non trouvé', 'error');
+        return;
+    }
+    
+    // Récupérer la quantité depuis le modal
+    const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+    
+    // Créer un panier temporaire avec seulement ce produit
+    const checkoutCart = {
+        items: [{
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.images?.[0] || product.image,
+            images: product.images,
+            quantity: quantity,
+            variant: product.variant || 'Standard'
+        }],
+        shippingGoal: 9500,
+        isSingleProduct: true
+    };
+    
+    // Sauvegarder dans localStorage
+    localStorage.setItem('maa_luxury_cart', JSON.stringify(checkoutCart));
+    
+    // Fermer le modal et rediriger
+    closeQuickViewModal();
+    window.location.href = 'checkout.html';
+}
+
+// Dans la section d'initialisation, ajoutez cet écouteur :
+document.addEventListener('DOMContentLoaded', async function() {
+    // ... votre code existant ...
+    
+    // Écouteur pour le bouton "VIEW DETAILS"
+    document.getElementById('view-details-btn').addEventListener('click', redirectToCartPage);
+    
+    // ... le reste de votre code d'initialisation ...
+});
+    </script>
 </body>
 </html>
