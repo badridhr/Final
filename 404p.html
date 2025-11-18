@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Non Trouvée - TIMELESS WATCH STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f5f5f5;
+            --accent-color: #d4af37;
+            --text-color: #333;
+            --white: #ffffff;
+            --dark-gray: #777;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            letter-spacing: 1px;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .error-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .watch-animation {
+            margin: 40px 0;
+            position: relative;
+            height: 120px;
+        }
+
+        .watch-face {
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .watch-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .hour-hand, .minute-hand {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 2px;
+            transform-origin: bottom center;
+            left: 50%;
+            bottom: 50%;
+        }
+
+        .hour-hand {
+            width: 3px;
+            height: 25px;
+            margin-left: -1.5px;
+            animation: rotateHour 12s linear infinite;
+        }
+
+        .minute-hand {
+            width: 2px;
+            height: 35px;
+            margin-left: -1px;
+            animation: rotateMinute 6s linear infinite;
+        }
+
+        @keyframes rotateHour {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotateMinute {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .watch-numbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .watch-number {
+            position: absolute;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .number-12 { top: 8%; left: 50%; transform: translateX(-50%); }
+        .number-3 { top: 50%; right: 8%; transform: translateY(-50%); }
+        .number-6 { bottom: 8%; left: 50%; transform: translateX(-50%); }
+        .number-9 { top: 50%; left: 8%; transform: translateY(-50%); }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            margin: 30px 0;
+            position: relative;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e5e5e5;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .quick-links {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .quick-links h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .link-item {
+            padding: 12px 15px;
+            background: var(--secondary-color);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .link-item:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .element-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .element-2 { top: 20%; right: 15%; animation-delay: 1s; }
+        .element-3 { bottom: 30%; left: 15%; animation-delay: 2s; }
+        .element-4 { bottom: 15%; right: 10%; animation-delay: 3s; }
+        .element-5 { top: 40%; left: 5%; animation-delay: 4s; }
+        .element-6 { top: 60%; right: 5%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+                margin: 20px;
+            }
+
+            .error-code {
+                font-size: 6rem;
+            }
+
+            .error-title {
+                font-size: 1.7rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-element {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            .watch-animation {
+                margin: 30px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Éléments flottants décoratifs -->
+    <div class="floating-elements">
+        <div class="floating-element element-1">⏱️</div>
+        <div class="floating-element element-2">⌚</div>
+        <div class="floating-element element-3">⏰</div>
+        <div class="floating-element element-4">🕰️</div>
+        <div class="floating-element element-5">⏳</div>
+        <div class="floating-element element-6">📿</div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <div class="logo-text">TIMELESS</div>
+            <div class="logo-subtitle">WATCH STORE</div>
+        </div>
+
+        <!-- Code d'erreur -->
+        <div class="error-code">404</div>
+
+        <!-- Titre -->
+        <h1 class="error-title">Page Non Trouvée</h1>
+
+        <!-- Message -->
+        <p class="error-message">
+            Désolé, la page que vous recherchez semble s'être égarée dans le temps. 
+            Elle a peut-être été déplacée ou n'existe plus.
+        </p>
+
+        <!-- Animation montre -->
+        <div class="watch-animation">
+            <div class="watch-face">
+                <div class="watch-numbers">
+                    <div class="watch-number number-12">12</div>
+                    <div class="watch-number number-3">3</div>
+                    <div class="watch-number number-6">6</div>
+                    <div class="watch-number number-9">9</div>
+                </div>
+                <div class="hour-hand"></div>
+                <div class="minute-hand"></div>
+                <div class="watch-center"></div>
+            </div>
+        </div>
+
+        <!-- Barre de recherche -->
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Rechercher sur le site...">
+            <button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="action-buttons">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                Retour à l'accueil
+            </a>
+            <a href="ToutLesProduits.html" class="btn btn-secondary">
+                <i class="fas fa-store"></i>
+                Voir la boutique
+            </a>
+        </div>
+
+        <!-- Liens rapides -->
+        <div class="quick-links">
+            <h3>Pages Populaires</h3>
+            <div class="links-grid">
+                <a href="Homme.html" class="link-item">Montres Homme</a>
+                <a href="Femme.html" class="link-item">Montres Femme</a>
+                <a href="ToutLesProduits.html" class="link-item">Tous les produits</a>
+                <a href="contact.html" class="link-item">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 TIMELESS WATCH STORE. Tous droits réservés.</p>
+        <p>Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a></p>
+    </div>
+
+    <script>
+        // Fonctionnalité de recherche
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.trim();
+            if (searchTerm) {
+                // Rediriger vers la page de recherche ou les produits avec le terme
+                window.location.href = `ToutLesProduits.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+        });
+
+        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-btn').click();
+            }
+        });
+
+        // Animation supplémentaire au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ajouter un effet de typewriter au message
+            const message = document.querySelector('.error-message');
+            const originalText = message.textContent;
+            message.textContent = '';
+            
+            let i = 0;
+            const typeWriter = setInterval(function() {
+                if (i < originalText.length) {
+                    message.textContent += originalText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeWriter);
+                }
+            }, 30);
+
+            // Effet de particules légères
+            createParticles();
+        });
+
+        function createParticles() {
+            const container = document.querySelector('.floating-elements');
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.innerHTML = '•';
+                particle.style.position = 'absolute';
+                particle.style.color = 'rgba(255, 255, 255, 0.3)';
+                particle.style.fontSize = Math.random() * 10 + 10 + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 6 + 4}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Effet de parallaxe sur les éléments flottants
+        document.addEventListener('mousemove', function(e) {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            floatingElements.forEach((element, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed * 20;
+                const y = (mouseY - 0.5) * speed * 20;
+                element.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+    <title>Contactez-Nous - TIMELESSWATCHSTORE</title>
+
+    <style>
+      
+
+
+
+        /* Styles de la bannière de contact */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .header-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6); 
+        }
+
+        .header-title {
+            font-family: 'Bodoni MT', 'Didot', 'Didot LT STD', 'Hoefler Text', 'Garamond', 'Times New Roman', serif; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            z-index: 5;
+        }
+        
+        /* Conteneur principal pour le contenu du formulaire */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            margin-bottom: 50px;
+            position: relative;
+            top: 200px; /* Conserver le décalage pour le moment */
+        }
+
+        /* --- Contenu principal : Formulaire et Informations --- */
+        .content-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-top: -80px; 
+            position: relative;
+            z-index: 10; 
+        }
+
+        /* --- Section Formulaire (Gauche) --- */
+        .form-section {
+            font-family: 'Arial', sans-serif;
+            flex: 1;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .form-section h2 {
+            margin-top: 0;
+            color: #c8a050;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: #c8a050;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #152a26;
+        }
+
+        /* --- Section Informations (Droite) --- */
+        .info-section {
+            flex: 1;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .info-section h2 {
+            margin-top: 0;
+            color: #c8a050;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .info-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .info-section .email, .info-section .Numéro {
+            font-weight: bold;
+            color: #c8a050;
+        }
+        
+        /* --- Styles MAPS RESPONSIVE (CORRIGÉS) --- */
+        .maps {
+            /* Retiré : position: relative; top: 250px; pour un placement standard avant le footer */
+            width: 100%;
+            margin-top: 250px; /* Décalage pour après le contenu contact */
+            margin-bottom: 0; /* Pas de marge en bas avant le footer */
+            overflow: hidden; /* Assure que rien ne déborde */
+        }
+        
+        .maps iframe {
+            width: 100%; /* Important : prend la largeur complète du parent */
+            max-width: 100%;
+            height: 600px; /* Hauteur fixe, peut être ajustée */
+            border: 0;
+            display: block;
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            /* Ajustement pour les tablettes (taille intermédiaire) */
+            .maps {
+               position: relative;
+               top: 230px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .delivery-info {
+                display: none;
+            }
+            
+            /* Cacher la nav secondaire sur mobile */
+            .top-nav {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: block;
+            }
+
+            .content-wrapper {
+                flex-direction: column;
+                margin-top: -170px;
+                padding-left: 0; /* Retirer le padding gauche ajouté */
+            }
+            
+            .form-section, .info-section {
+                padding: 20px;
+            }
+            
+            .header-image-wrapper {
+                height: 200px;
+            }
+            
+            .header-title {
+                font-size: 2em;
+            }
+            
+            .maps {
+                margin-top: 50px; /* Réduire l'espace avant la carte sur mobile */
+            }
+        }
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-tiktok"></i>
+        </div>
+        
+        <nav class="navbar">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="TIME<ESS Watch Store" class="logo-img">
+                <span class="logo-subtitle">storetwatch</span>
+            </a>
+            
+            <div class="desktop-nav">
+                <a href="index.html">ACCUEIL</a>
+                <a href="ToutLesProduits.html">BOUTIQUE</a>
+                <a href="contact.html">CONTACTEZ-NOUS</a>
+            </div>
+            
+            <div class="nav-icons">
+                <a href="#" id="wishlist-icon"><i class="far fa-heart"></i><span class="wishlist-count" id="wishlist-count">0</span></a>
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cart-count">0</span></a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Menu mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="menu-header">
+            <div class="menu-logo">TIME&lt;ESS</div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mobile-nav">
+            <a href="index.html"><i class="fas fa-home"></i> ACCUEIL</a>
+            <a href="ToutLesProduits.html"><i class="fas fa-store"></i> BOUTIQUE</a>
+            <a href="Homme.html"><i class="fa-solid fa-person"></i> HOMME</a>
+            <a href="Femme.html"><i class="fa-solid fa-person-dress"></i> FEMME</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> CONTACTEZ-NOUS</a>
+            <a href="#" id="mobile-wishlist-icon"><i class="far fa-heart"></i> WISHLIST</a>
+        </nav>
+    </div>
+    
+    <!-- Overlay pour fermer le menu -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Panier latéral -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">MON PANIER</h3>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">0,00 د.ج</span>
+            </div>
+            <button class="cart-checkout" id="checkout-button">COMMANDER</button>
+        </div>
+    </div>
+    
+    <!-- Wishlist latérale -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3 class="wishlist-title">Mes favoris</h3>
+            <button class="close-wishlist" id="close-wishlist">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wishlist-content" id="wishlist-content">
+            <div class="wishlist-empty">
+                <i class="far fa-heart" style="font-size: 48px; margin-bottom: 15px;"></i>
+                <p>Votre wishlist est vide</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay pour fermer le panier -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    
+    <!-- Overlay pour fermer la wishlist -->
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+    
+    <!-- Overlay pour fermer le menu -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Panier latéral -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">MON PANIER</h3>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">0,00 د.ج</span>
+            </div>
+            <button class="cart-checkout" id="checkout-button">COMMANDER</button>
+        </div>
+    </div>
+    
+    <div class="mobile-bottom-bar">
+        <nav class="mobile-bottom-nav">
+            <a href="#" class="mobile-bottom-item active"><i class="fas fa-store"></i><span>Shop</span></a>
+            <a href="#" class="mobile-bottom-item" id="mobile-bottom-wishlist"><i class="far fa-heart"></i><span>Wishlist</span><span class="mobile-bottom-count" id="mobile-wishlist-count">0</span></a>
+            <a href="#" class="mobile-bottom-item" id="mobile-cart-icon"><i class="fas fa-shopping-bag"></i><span>Panier</span><span class="mobile-bottom-count cart" id="mobile-cart-count">0</span></a>
+        </nav>
+    </div>
+    
+    <!-- Overlay pour fermer le panier -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    
+    <!-- Overlay pour fermer la wishlist -->
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+    
+    <!-- WhatsApp flottant -->
+    <a href="https://wa.me/33612345678" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <main class="container">
+        <div class="content-wrapper">
+            
+            <section class="form-section">
+                <h2>Contactez-Nous</h2>
+                <form action="https://formsubmit.co/VOTRE_EMAIL_ICI@example.com" method="POST" class="contact-form">
+                    
+                    <input type="hidden" name="_subject" value="Nouveau message de votre site web !">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://votresite.com/merci.html"> 
+
+                    <input type="text" name="name" placeholder="Nom" required>
+                    <input type="email" name="email" placeholder="Email *" required>
+                    <input type="tel" name="phone" placeholder="Numéro de téléphone">
+                    <textarea name="message" placeholder="Votre commentaire" required></textarea>
+                    
+                    <button type="submit" class="submit-btn">ENVOYER</button>
+                </form>
+            </section>
+
+            <section class="info-section">
+                <h2>À votre service</h2>
+                <p>
+                    Nous sommes là pour répondre à toutes vos questions. N'hésitez pas à nous contacter en utilisant le formulaire, ou directement par e-mail.
+                </p>
+                <p>
+                    Vous pouvez aussi nous joindre pour toute demande d'information sur nos produits ou services.
+                </p>
+                <p>
+                    Email : <span class="email">timelesswatch@store.dz</span><br>
+                    Numéro : <span class="Numéro">+213 123 456 789</span>
+                </p>
+            </section>
+
+        </div>
+    </main>
+    
+
+    
+    <div class="maps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.5668067935826!2d3.0460989!3d36.7569678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fb3003f80e8e5%3A0x1451d40703954354!2sTimeless!5e0!3m2!1sfr!2sdz!4v1763185334751!5m2!1sfr!2sdz" **width="100%"** height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    
+  
+
+<script >
+            // Menu hamburger
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const overlay = document.getElementById('overlay');
+        
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        hamburger.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+        
+        // Fermer le menu en cliquant sur un lien
+        const mobileLinks = document.querySelectorAll('.mobile-nav a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Activation des éléments de la barre mobile
+        const bottomItems = document.querySelectorAll('.mobile-bottom-item');
+        bottomItems.forEach(item => {
+            item.addEventListener('click', function() {
+                bottomItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+</script>
+<footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section contact-info">
+                <div class="logo-container">
+                    <img src="images/footer.jpg" alt="" width="120px" height="50px">
+
+                </div>
+
+                <ul class="contact-list">
+                    <li>
+                        <span class="icon">📍</span> avenue Suidani Boudjetimelesswatchstore, Alger
+                    </li>
+                    <li>
+                        <span class="icon">📞</span> +213 (0556 774 148)
+                    </li>
+                    <li>
+                        <span class="icon">📧</span> timelesswatch@store.dz
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section quick-links">
+                <h3>LIENS RAPIDES</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="ToutLesProduits.html">Boutique</a></li>
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section categories">
+                <h3>CATÉGORIES</h3>
+                <ul>
+                    <li><a href="Homme.html">Hommes</a></li>
+                    <li><a href="Femme.html">Femmes</a></li>
+                    <li><a href="Promotion.html">Promotion</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Copyright © 2025 - TimelessWatchstore Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a>.</p>
+        </div>
+    </footer>
+
+
+    <script src="navbar.js"></script>
+    <script src="prodtuis.js"></script>
+    
+    
+</body>
+</html>

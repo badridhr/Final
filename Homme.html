@@ -1,0 +1,3121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <title>TIMELESSWATCHSTORE - Boutique de montres de luxe pour Hommes</title>
+    <style>
+        /* VOTRE CSS EXISTANT - JE LE CONSERVE TEL QUEL */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f5f5f5;
+            --accent-color: #d4af37;
+            --text-color: #333;
+            --light-gray: #f9f9f9;
+            --border-color: #e5e5e5;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --discount-red: #e74c3c;
+            --new-green: #2ecc71;
+            --white: #ffffff;
+            --dark-gray: #777;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+
+        .header span {
+            color: var(--accent-color); 
+            font-weight: 600;
+        }
+
+        /* Header styles */
+        /* ... conserver les styles existants pour le header ... */
+
+        /* Section principale */
+        .shop-container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .shop-content {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .shop-title h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .product-count {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .product-count span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Filtres à gauche */
+        .shop-filters {
+            width: 280px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            margin-right: 20px;
+        }
+
+        .filter-section {
+            margin-bottom: 30px;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-title i {
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .price-filter {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .price-separator {
+            color: var(--dark-gray);
+        }
+
+        .price-slider {
+            margin: 15px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 5px;
+            background: var(--light-gray);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .slider-progress {
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 5px;
+            width: 50%;
+        }
+
+        .slider-thumb {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        .slider-thumb.min {
+            left: 25%;
+        }
+
+        .slider-thumb.max {
+            left: 75%;
+        }
+
+        .filter-button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .filter-button:hover {
+            background: var(--accent-color);
+        }
+
+        /* Categories en bas */
+        .categories-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .categories-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .categories-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .brand-categories, .gender-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            padding: 10px 20px;
+            background: var(--light-gray);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-item:hover {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .category-item.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .category-item i {
+            font-size: 0.9rem;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-card.featured {
+            border: 2px solid var(--accent-color);
+        }
+
+        /* Product Image Container */
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: var(--light-gray);
+    padding: 10px; /* Ajout d'espace autour de l'image */
+    box-sizing: border-box; /* Important pour que le padding soit inclus dans la taille totale */
+}
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image-container img {
+            transform: scale(1.05);
+        }
+
+        /* Product Actions */
+        .product-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-icon:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .action-icon.wishlist-icon.active {
+            background: var(--white);
+            color: #ff0000;
+        }
+
+        /* Tags */
+        .discount-tag, .new-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .discount-tag {
+            background: var(--discount-red);
+            color: var(--white);
+        }
+
+        .new-tag {
+            background: var(--new-green);
+            color: var(--white);
+        }
+
+        /* Product Details */
+        .product-details {
+            padding: 20px;
+        }
+
+        .name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .brand {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .price-old {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+
+        .price.with-discount {
+            color: var(--discount-red);
+        }
+
+        .currency {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Command Button */
+        .command-button {
+            width: calc(100% - 40px);
+            margin: 0 20px 20px;
+            padding: 12px 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .command-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Styles pour le panier et la wishlist */
+        .cart-sidebar, .wishlist-sidebar {
+            position: fixed;
+            top: 0;
+            right: -50%;
+            width: 50%;
+            height: 100vh;
+            background-color: #fff;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-sidebar.active, .wishlist-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-header, .wishlist-header {
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-title, .wishlist-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .close-cart, .close-wishlist {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .cart-content, .wishlist-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .cart-empty, .wishlist-empty {
+            text-align: center;
+            padding: 40px 0;
+            color: #777;
+        }
+        
+        .cart-item, .wishlist-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image, .wishlist-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details, .wishlist-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name, .wishlist-item-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price, .wishlist-item-price {
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 25px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+        }
+        
+        .cart-item-remove, .wishlist-item-remove {
+            background: none;
+            border: none;
+            color: #777;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .cart-checkout {
+            width: 100%;
+            padding: 12px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cart-checkout:hover {
+            background-color: #333;
+        }
+        
+        .cart-count, .wishlist-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ffd700;
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .wishlist-count {
+            background-color: #ff0000;
+            color: #fff;
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .nav-icons a {
+            color: #000;
+            font-size: 18px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-icons a:hover {
+            color: #ffd700;
+        }
+        
+        .cart-overlay, .wishlist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+        }
+        
+        .cart-overlay.active, .wishlist-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .wishlist-item-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .wishlist-add-to-cart {
+            padding: 8px 12px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .wishlist-add-to-cart:hover {
+            background-color: #333;
+        }
+
+        /* Styles pour les compteurs de la barre mobile */
+        .mobile-bottom-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            font-size: 12px;
+        }
+
+        .mobile-bottom-count {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background-color: #ff0000;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-bottom-count.cart {
+            background-color: #ffd700;
+            color: #000;
+        }
+
+        /* Bouton filtre mobile */
+        .mobile-filter-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 20px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-filter-toggle:hover {
+            background: var(--accent-color);
+        }
+
+        /* Menu filtre mobile */
+        .mobile-filters-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+
+        .mobile-filters-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-filters-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .close-filters {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .mobile-filters-content {
+            padding-bottom: 80px;
+        }
+
+        .mobile-filters-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 15px;
+        }
+
+        .mobile-filter-button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-filter-apply {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .mobile-filter-apply:hover {
+            background: var(--accent-color);
+        }
+
+        .mobile-filter-reset {
+            background: var(--light-gray);
+            color: var(--text-color);
+        }
+
+        .mobile-filter-reset:hover {
+            background: var(--border-color);
+        }
+
+        /* Overlay pour filtres mobiles */
+        .filters-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .filters-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Styles pour les cases à cocher */
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 8px 0;
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-color);
+        }
+
+        .filter-checkbox span {
+            font-size: 0.95rem;
+        }
+
+        /* AJOUTÉ: Modal styles pour la vue rapide */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.8);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .modal-image-col {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal-image-col img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .view-details-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .view-details-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .modal-details-col {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .modal-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .modal-price-display {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        .modal-command-area {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .qty-btn:hover {
+            background-color: var(--light-gray);
+        }
+
+        #qty-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .modal-command-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .modal-command-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .modal-divider {
+            border: none;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 25px 0;
+        }
+
+        .modal-info-line {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+        }
+
+        .modal-info-line span {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .modal-follow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .follow-text {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .modal-follow i {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        /* Styles pour le carrousel d'images */
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .main-image-container {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .carousel-thumbnails {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .thumbnail.active {
+            border-color: var(--accent-color);
+            opacity: 1;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .carousel-btn i {
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        /* Indicateur du nombre d'images */
+        .image-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            z-index: 5;
+        }
+
+        /* Responsive pour le carrousel */
+        @media (max-width: 768px) {
+            .main-image-container {
+                height: 300px;
+            }
+            
+            .thumbnail {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        .modal-follow i:hover {
+            color: var(--primary-color);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .close-modal-btn:hover {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Barre mobile fixe en bas */
+        .mobile-bottom-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .mobile-bottom-nav {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .mobile-bottom-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .mobile-bottom-item.active {
+            color: var(--accent-color);
+        }
+
+        .mobile-bottom-item i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Notification style */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            z-index: 2000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: var(--transition);
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Spinner pour le chargement */
+        .spinner {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 50px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Styles pour les filtres actifs */
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .active-filter-tag {
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .active-filter-tag i {
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            grid-column: 1 / -1;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .shop-container {
+                flex-direction: column;
+            }
+            
+            .shop-content {
+                padding-left: 0;
+            }
+            
+            .shop-filters {
+                width: 100%;
+                position: relative;
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            
+            .filter-section {
+                margin-bottom: 20px;
+            }
+
+            .modal-body {
+                flex-direction: column;
+            }
+
+            .cart-sidebar, .wishlist-sidebar {
+                width: 85%;
+                right: -85%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .shop-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .brand-categories, .gender-categories {
+                gap: 10px;
+            }
+            
+            .category-item {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .shop-filters { display: none; }
+            .mobile-filter-toggle { display: flex; }
+            .mobile-filters-menu { display: block; }
+            .mobile-bottom-bar { display: block; }
+            .cart-sidebar, .wishlist-sidebar { width: 90%; right: -90%; }
+        }
+
+        @media (max-width: 480px) {
+            /* CORRECTION: Ajustement de la grille pour les mobiles */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 0 10px; /* Ajout de padding pour éviter que les cartes ne touchent les bords */
+            }
+            
+            .product-card {
+                width: 100%; /* S'assurer que les cartes ne dépassent pas */
+            }
+            
+            .product-image-container {
+                height: 200px; /* Réduire la hauteur des images sur mobile */
+            }
+            
+            .product-details {
+                padding: 10px; /* Réduire le padding pour économiser de l'espace */
+            }
+            
+            .name {
+                font-size: 0.9rem; /* Réduire la taille du texte */
+            }
+            
+            .brand {
+                font-size: 0.8rem;
+                margin-bottom: 8px;
+            }
+            
+            .price {
+                font-size: 1.1rem;
+            }
+            
+            .command-button {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+                margin: 0 10px 10px;
+            }
+            
+            .brand-categories, .gender-categories {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 10px;
+            }
+            .modal-content { width: 95%; margin: 10px; }
+            .modal-image-col, .modal-details-col { padding: 15px; }
+            .modal-name { font-size: 1.5rem; }
+            .modal-price-display { font-size: 1.3rem; }
+            .modal-command-area { flex-direction: column; gap: 10px; }
+            .quantity-control { width: 100%; }
+            #qty-input { flex: 1; }
+        }
+    </style>
+</head>
+<body>
+      <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-tiktok"></i>
+        </div>
+        
+        <nav class="navbar">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="TIME<ESS Watch Store" class="logo-img">
+                <span class="logo-subtitle">storetwatch</span>
+            </a>
+            
+            <div class="desktop-nav">
+                <a href="index.html">ACCUEIL</a>
+                <a href="ToutLesProduits.html">BOUTIQUE</a>
+                <a href="contact.html">CONTACTEZ-NOUS</a>
+            </div>
+            
+            <div class="nav-icons">
+                <a href="#" id="wishlist-icon"><i class="far fa-heart"></i><span class="wishlist-count" id="wishlist-count">0</span></a>
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cart-count">0</span></a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Menu mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="menu-header">
+            <div class="menu-logo">TIME&lt;ESS</div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mobile-nav">
+            <a href="index.html"><i class="fas fa-home"></i> ACCUEIL</a>
+            <a href="ToutLesProduits.html"><i class="fas fa-store"></i> BOUTIQUE</a>
+            <a href="Homme.html"><i class="fa-solid fa-person"></i> HOMME</a>
+            <a href="Femme.html"><i class="fa-solid fa-person-dress"></i> FEMME</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> CONTACTEZ-NOUS</a>
+            <a href="#" id="mobile-wishlist-icon"><i class="far fa-heart"></i> WISHLIST</a>
+        </nav>
+    </div>
+    
+    <!-- Overlay pour fermer le menu -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Panier latéral -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">MON PANIER</h3>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">0,00 د.ج</span>
+            </div>
+            <button class="cart-checkout" id="checkout-button">COMMANDER</button>
+        </div>
+    </div>
+    
+    <!-- Wishlist latérale -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3 class="wishlist-title">Mes favoris</h3>
+            <button class="close-wishlist" id="close-wishlist">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wishlist-content" id="wishlist-content">
+            <div class="wishlist-empty">
+                <i class="far fa-heart" style="font-size: 48px; margin-bottom: 15px;"></i>
+                <p>Votre wishlist est vide</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay pour fermer le panier -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    
+    <!-- Overlay pour fermer la wishlist -->
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+    
+    <!-- Panier latéral -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">MON PANIER</h3>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty"><i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i><p>Votre panier est vide</p></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Total:</span><span id="cart-total">0,00 د.ج</span></div>
+            <button class="cart-checkout" id="checkout-button">COMMANDER</button>
+        </div>
+    </div>
+    
+    <!-- Wishlist latérale -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3 class="wishlist-title">Mes favoris</h3>
+            <button class="close-wishlist" id="close-wishlist"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="wishlist-content" id="wishlist-content">
+            <div class="wishlist-empty"><i class="far fa-heart" style="font-size: 48px; margin-bottom: 15px;"></i><p>Votre wishlist est vide</p></div>
+        </div>
+    </div>
+    
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+    
+    <!-- Section principale -->
+    <section class="shop-section">
+        <header class="header">
+            <h1>Bienvenue chez Timelesswatchstore - La boutique N#1 de montres de luxe <span>pour Hommes.</span></h1>
+        </header>
+        
+        <button class="mobile-filter-toggle" id="mobileFilterToggle"><i class="fas fa-filter"></i> FILTRER LES PRODUITS</button>
+        
+        <div class="filters-overlay" id="filtersOverlay"></div>
+        <div class="mobile-filters-menu" id="mobileFiltersMenu">
+            <div class="mobile-filters-header">
+                <h2 class="mobile-filters-title">Filtres</h2>
+                <button class="close-filters" id="closeFilters"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mobile-filters-content">
+                <div class="filter-section">
+                    <div class="filter-title">Filtrer par prix</div>
+                    <div class="price-filter">
+                        <div class="price-range">
+                            <input type="number" class="price-input mobile-price-min" placeholder="Min" value="0">
+                            <span class="price-separator">-</span>
+                            <input type="number" class="price-input mobile-price-max" placeholder="Max" value="100000">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <div class="filter-title">Filtrer par marque</div>
+                    <div class="brand-filter" id="mobile-brand-filters">
+                        <!-- Les filtres de marque seront générés dynamiquement ici -->
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <div class="filter-title">Filtrer par genre</div>
+                    <div class="gender-filter" id="mobile-gender-filters">
+                        <!-- Les filtres de genre seront générés dynamiquement ici -->
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-filters-footer">
+                <button class="mobile-filter-button mobile-filter-reset" id="mobileFilterReset">RÉINITIALISER</button>
+                <button class="mobile-filter-button mobile-filter-apply" id="mobileFilterApply">APPLIQUER</button>
+            </div>
+        </div>
+        
+        <div class="shop-container">
+            <aside class="shop-filters">
+                <div class="filter-section">
+                    <div class="filter-title">Filtrer par prix <i class="fas fa-chevron-down"></i></div>
+                    <div class="price-filter">
+                        <div class="price-range">
+                            <input type="number" class="price-input desktop-price-min" placeholder="Min" value="0">
+                            <span class="price-separator">-</span>
+                            <input type="number" class="price-input desktop-price-max" placeholder="Max" value="100000">
+                        </div>
+                        <button class="filter-button" id="applyPriceFilter">Appliquer</button>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <div class="filter-title">Filtrer par marque <i class="fas fa-chevron-down"></i></div>
+                    <div class="brand-filter" id="desktop-brand-filters">
+                        <!-- Les filtres de marque seront générés dynamiquement ici -->
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <div class="filter-title">Filtrer par genre <i class="fas fa-chevron-down"></i></div>
+                    <div class="gender-filter" id="desktop-gender-filters">
+                        <!-- Les filtres de genre seront générés dynamiquement ici -->
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <div class="active-filters" id="activeFilters">
+                        <!-- Les filtres actifs seront affichés ici -->
+                    </div>
+                    <button class="filter-button" id="resetFilters">Réinitialiser tous les filtres</button>
+                </div>
+            </aside>
+            
+            <div class="shop-content">
+                <div class="shop-header">
+                    <div class="shop-title"><h1>Montres pour Hommes</h1></div>
+                    <div class="product-count">Affichage de <span id="current-count">0</span> sur <span id="total-count">0</span> produits</div>
+                </div>
+                
+                <main class="products-grid" id="products-grid">
+                    <!-- Les produits seront chargés ici dynamiquement depuis Firebase ou depuis les données locales -->
+                    <div class="spinner"></div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal pour vue rapide -->
+    <div id="quick-view-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="modal-image-col">
+                    <!-- Carrousel d'images -->
+                    <div class="image-carousel">
+                        <div class="main-image-container">
+                            <img id="modal-product-image" src="https://via.placeholder.com/350x350?text=Produit" alt="Montre en gros plan">
+                        </div>
+                        <div class="carousel-thumbnails" id="carousel-thumbnails">
+                            <!-- Les miniatures seront ajoutées ici dynamiquement -->
+                        </div>
+                        <button class="carousel-btn carousel-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="carousel-btn carousel-next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <button class="view-details-btn" id="view-details-btn">VIEW DETAILS</button>
+                </div>
+                <div class="modal-details-col">
+                    <h2 id="modal-product-name" class="modal-name">CASIO</h2>
+                    <p class="modal-price-display"><span id="modal-product-price">9.900,00</span> <span class="currency">د.ج</span></p>
+                    <div class="modal-command-area">
+                        <div class="quantity-control">
+                            <button class="qty-btn" id="qty-minus">-</button>
+                            <input type="number" id="qty-input" value="1" min="1" max="100">
+                            <button class="qty-btn" id="qty-plus">+</button>
+                        </div>
+                        <button class="modal-command-btn" id="modal-checkout-button">COMMANDER / لطلب الآن</button>
+                    </div>
+                    <hr class="modal-divider">
+                    <p class="modal-info-line">**Catégorie** : <span id="modal-product-category">Casio - Homme</span></p>
+                    <p class="modal-info-line">**Description** : <span id="modal-product-description">Description du produit</span></p>
+                    <div class="modal-follow">
+                        <span class="follow-text">Follow:</span>
+                            <a href=""><i class="fa-brands fa-facebook"></i></a>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                            <a href=""><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section contact-info">
+                <div class="logo-container">
+                    <img src="images/footer.jpg" alt="" width="120px" height="50px">
+
+                </div>
+
+                <ul class="contact-list">
+                    <li>
+                        <span class="icon">📍</span> avenue Suidani Boudjetimelesswatchstore, Alger
+                    </li>
+                    <li>
+                        <span class="icon">📞</span> +213 (0556 774 148)
+                    </li>
+                    <li>
+                        <span class="icon">📧</span> timelesswatch@store.dz
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section quick-links">
+                <h3>LIENS RAPIDES</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="ToutLesProduits.html">Boutique</a></li>
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section categories">
+                <h3>CATÉGORIES</h3>
+                <ul>
+                    <li><a href="Homme.html">Hommes</a></li>
+                    <li><a href="Femme.html">Femmes</a></li>
+                    <li><a href="ToutLesProduits.html">Promotion</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Copyright © 2025 - TimelessWatchstore Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a>.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/33612345678" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <div class="mobile-bottom-bar">
+        <nav class="mobile-bottom-nav">
+            <a href="#" class="mobile-bottom-item active"><i class="fas fa-store"></i><span>Shop</span></a>
+            <a href="#" class="mobile-bottom-item" id="mobile-bottom-wishlist"><i class="far fa-heart"></i><span>Wishlist</span><span class="mobile-bottom-count" id="mobile-wishlist-count">0</span></a>
+            <a href="#" class="mobile-bottom-item" id="mobile-cart-icon"><i class="fas fa-shopping-bag"></i><span>Panier</span><span class="mobile-bottom-count cart" id="mobile-cart-count">0</span></a>
+        </nav>
+    </div>
+
+    <script src="navbar.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+
+    <script>
+        // === CONFIGURATION FIREBASE ===
+        const firebaseConfig = {
+            apiKey: "AIzaSyBB8zPrG4MjAqBm1SOxIFQdWtiCmz_v92s",
+            authDomain: "luxur-6b128.firebaseapp.com",
+            projectId: "luxur-6b128",
+            storageBucket: "luxur-6b128.firebasestorage.app",
+            messagingSenderId: "900453735371",
+            appId: "1:900453735371:web:e32188ac6ea261084c344e"
+        };
+        // Initialiser Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // Éléments du DOM
+        const productsGrid = document.getElementById('products-grid');
+        const quickViewModal = document.getElementById('quick-view-modal');
+        const currentCountSpan = document.getElementById('current-count');
+        const totalCountSpan = document.getElementById('total-count');
+        const activeFiltersContainer = document.getElementById('activeFilters');
+
+        // Variables globales pour le panier et la wishlist
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        
+        // Variables pour les filtres
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentFilters = {
+            priceMin: 0,
+            priceMax: 100000,
+            brands: [],
+            genders: ['Homme'] // MODIFICATION: Filtrer par défaut pour les produits pour Hommes
+        };
+        
+        // AJOUT: Variable pour stocker l'ID du produit actuel dans la vue rapide
+        let currentProductId = null;
+
+        // === FONCTIONS POUR LA GESTION DES PRODUITS ===
+        
+        // Fonction pour afficher une notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => { 
+                notification.classList.remove('show'); 
+                setTimeout(() => document.body.removeChild(notification), 300); 
+            }, 3000);
+        }
+
+        // Fonction de debug pour vérifier la connexion Firebase
+        async function debugFirebase() {
+            try {
+                console.log("=== DEBUG FIREBASE ===");
+                console.log("Configuration Firebase:", firebaseConfig);
+                
+                // Tester la connexion avec les deux collections
+                const testProduits = await db.collection('produits').limit(1).get();
+                const testProducts = await db.collection('products').limit(1).get();
+                
+                console.log("Collection 'produits':", testProduits.size, "documents");
+                console.log("Collection 'products':", testProducts.size, "documents");
+                
+                // Afficher le premier produit de chaque collection pour debug
+                if (!testProduits.empty) {
+                    testProduits.forEach(doc => {
+                        console.log("Exemple produit 'produits':", doc.data());
+                    });
+                }
+                if (!testProducts.empty) {
+                    testProducts.forEach(doc => {
+                        console.log("Exemple produit 'products':", doc.data());
+                    });
+                }
+                
+            } catch (error) {
+                console.error("Erreur debug Firebase:", error);
+            }
+        }
+
+        // Fonction principale de chargement depuis Firebase
+        async function loadProductsFromFirebase() {
+            productsGrid.innerHTML = '<div class="spinner"></div>';
+            console.log("Chargement des produits depuis Firebase...");
+            
+            try {
+                // Essayer d'abord la collection 'produits' (celle du panel admin)
+                let snapshot = await db.collection('produits').orderBy('date_modification', 'desc').get();
+                
+                // Si vide, essayer la collection 'products'
+                if (snapshot.empty) {
+                    console.log("Collection 'produits' vide, essai avec 'products'...");
+                    snapshot = await db.collection('products').orderBy('date_modification', 'desc').get();
+                }
+                
+                if (snapshot.empty) {
+                    console.log("Aucun produit trouvé dans Firebase.");
+                    showNotification("Aucun produit disponible pour le moment.", 'info');
+                    productsGrid.innerHTML = '<div class="no-results">Aucun produit disponible pour le moment.</div>';
+                    return;
+                }
+
+                console.log(`${snapshot.size} produits chargés depuis Firebase.`);
+                allProducts = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    console.log("Produit chargé:", data); // Debug
+                    
+                    // Structure compatible avec votre panel admin
+                    const product = { 
+                        id: doc.id, 
+                        ...data,
+                        // Mapping des champs pour compatibilité
+                        name: data.nom || data.name || 'Nom non spécifié',
+                        brand: data.marque || data.brand || 'Marque inconnue',
+                        category: data.categorie || data.category || 'Non catégorisé',
+                        price: parseFloat(data.prix || data.price || 0),
+                        description: data.description || '',
+                        image: data.image || data.images?.[0] || 'https://via.placeholder.com/280x280?text=Image+Manquante',
+                        images: data.images || [data.image] || ['https://via.placeholder.com/280x280?text=Image+Manquante'],
+                        stock: data.stock || 0
+                    };
+                    
+                    // Validation des données essentielles
+                    if (product.name && !isNaN(product.price)) {
+                        allProducts.push(product);
+                    } else {
+                        console.warn("Produit ignoré (données invalides):", product);
+                    }
+                });
+                
+                // DEBUG: Afficher toutes les catégories trouvées
+                const allCategories = [...new Set(allProducts.map(p => p.category))];
+                console.log("Toutes les catégories trouvées:", allCategories);
+                
+                if(allProducts.length === 0) {
+                    console.warn("Aucun produit valide trouvé dans Firebase.");
+                    showNotification("Les données de Firebase sont invalides.", 'warning');
+                    productsGrid.innerHTML = '<div class="no-results">Aucun produit valide disponible.</div>';
+                } else {
+                    finalizeProductLoading();
+                }
+
+            } catch (error) {
+                console.error("Erreur lors du chargement depuis Firebase:", error);
+                showNotification("Erreur de connexion à Firebase: " + error.message, 'error');
+                productsGrid.innerHTML = '<div class="no-results">Erreur de chargement des produits.</div>';
+            }
+        }
+
+        // Fonction pour finaliser le chargement des produits
+        function finalizeProductLoading() {
+            console.log("Finalisation du chargement des produits...");
+            
+            // MODIFICATION: Appliquer le filtre pour les produits pour Hommes par défaut
+            applyFilters();
+            
+            // Peupler les filtres
+            populateFilters();
+            
+            // Mettre à jour les compteurs
+            updateProductCounters();
+            
+            console.log(`Chargement terminé: ${allProducts.length} produits disponibles`);
+        }
+
+        // Fonction pour mettre à jour les compteurs de produits
+        function updateProductCounters() {
+            currentCountSpan.textContent = filteredProducts.length;
+            totalCountSpan.textContent = allProducts.filter(product => {
+                // MODIFICATION: Ne compter que les produits pour Hommes dans le total
+                return isMenProduct(product);
+            }).length;
+        }
+
+        // NOUVELLE FONCTION: Vérifier si un produit est pour les hommes
+        function isMenProduct(product) {
+            const category = (product.category || '').toLowerCase().trim();
+            const name = (product.name || '').toLowerCase().trim();
+            
+            // DEBUG: Afficher la catégorie de chaque produit
+            console.log(`Vérification produit: "${product.name}" - Catégorie: "${category}"`);
+            
+            // Vérifications plus flexibles pour les produits pour hommes
+            return (
+                category === 'homme' ||
+                category === 'hommes' ||
+                category === 'men' ||
+                category === 'male' ||
+                category.includes('homme') ||
+                category.includes('hommes') ||
+                category.includes('men') ||
+                category.includes('male') ||
+                name.includes('homme') ||
+                name.includes('hommes') ||
+                name.includes('men') ||
+                name.includes('male')
+            );
+        }
+
+        // Fonction pour extraire les marques et catégories uniques et générer les filtres
+        function populateFilters() {
+            // MODIFICATION: Filtrer pour n'afficher que les produits pour Hommes
+            const menProducts = allProducts.filter(product => isMenProduct(product));
+            
+            console.log(`Produits pour hommes trouvés: ${menProducts.length}`);
+            
+            // Extraire les marques uniques
+            const brands = [...new Set(menProducts.map(product => product.brand))].filter(Boolean);
+            
+            // Extraire les catégories uniques
+            const categories = [...new Set(menProducts.map(product => product.category))].filter(Boolean);
+            
+            console.log(`Marques trouvées: ${brands.join(', ')}`);
+            console.log(`Catégories trouvées: ${categories.join(', ')}`);
+            
+            // Générer les filtres de marque pour desktop
+            const desktopBrandFilters = document.getElementById('desktop-brand-filters');
+            desktopBrandFilters.innerHTML = '';
+            
+            brands.forEach(brand => {
+                const brandValue = brand.toLowerCase().replace(/\s+/g, '-');
+                const checkbox = document.createElement('label');
+                checkbox.className = 'filter-checkbox';
+                checkbox.innerHTML = `
+                    <input type="checkbox" name="brand" value="${brandValue}">
+                    <span>${brand}</span>
+                `;
+                desktopBrandFilters.appendChild(checkbox);
+            });
+            
+            // Générer les filtres de marque pour mobile
+            const mobileBrandFilters = document.getElementById('mobile-brand-filters');
+            mobileBrandFilters.innerHTML = '';
+            
+            brands.forEach(brand => {
+                const brandValue = brand.toLowerCase().replace(/\s+/g, '-');
+                const checkbox = document.createElement('label');
+                checkbox.className = 'filter-checkbox';
+                checkbox.innerHTML = `
+                    <input type="checkbox" name="brand" value="${brandValue}">
+                    <span>${brand}</span>
+                `;
+                mobileBrandFilters.appendChild(checkbox);
+            });
+            
+            // Générer les filtres de catégorie pour desktop
+            const desktopGenderFilters = document.getElementById('desktop-gender-filters');
+            desktopGenderFilters.innerHTML = '';
+            
+            categories.forEach(category => {
+                const categoryValue = category.toLowerCase().replace(/\s+/g, '-');
+                const checkbox = document.createElement('label');
+                checkbox.className = 'filter-checkbox';
+                checkbox.innerHTML = `
+                    <input type="checkbox" name="gender" value="${categoryValue}" checked disabled>
+                    <span>${category}</span>
+                `;
+                desktopGenderFilters.appendChild(checkbox);
+            });
+            
+            // Générer les filtres de catégorie pour mobile
+            const mobileGenderFilters = document.getElementById('mobile-gender-filters');
+            mobileGenderFilters.innerHTML = '';
+            
+            categories.forEach(category => {
+                const categoryValue = category.toLowerCase().replace(/\s+/g, '-');
+                const checkbox = document.createElement('label');
+                checkbox.className = 'filter-checkbox';
+                checkbox.innerHTML = `
+                    <input type="checkbox" name="gender" value="${categoryValue}" checked disabled>
+                    <span>${category}</span>
+                `;
+                mobileGenderFilters.appendChild(checkbox);
+            });
+            
+            // Ajouter les écouteurs d'événements pour les nouveaux filtres
+            addFilterEventListeners();
+        }
+
+        // Fonction pour ajouter les écouteurs d'événements pour les filtres
+        function addFilterEventListeners() {
+            // Écouteurs pour les filtres desktop (marques)
+            document.querySelectorAll('.shop-filters input[name="brand"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        if (!currentFilters.brands.includes(this.value)) {
+                            currentFilters.brands.push(this.value);
+                        }
+                    } else {
+                        currentFilters.brands = currentFilters.brands.filter(brand => brand !== this.value);
+                    }
+                    applyFilters();
+                });
+            });
+            
+            // Écouteurs pour les filtres desktop (genres)
+            document.querySelectorAll('.shop-filters input[name="gender"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        if (!currentFilters.genders.includes(this.value)) {
+                            currentFilters.genders.push(this.value);
+                        }
+                    } else {
+                        currentFilters.genders = currentFilters.genders.filter(gender => gender !== this.value);
+                    }
+                    applyFilters();
+                });
+            });
+        }
+
+        // Fonction pour afficher les produits filtrés
+        function displayProducts(products) {
+            productsGrid.innerHTML = '';
+            
+            if (products.length === 0) {
+                productsGrid.innerHTML = '<div class="no-results">Aucun produit ne correspond à vos critères de filtrage.</div>';
+                currentCountSpan.textContent = '0';
+                totalCountSpan.textContent = allProducts.filter(product => isMenProduct(product)).length;
+                return;
+            }
+            
+            products.forEach(product => {
+                const formattedPrice = product.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                
+                // CORRECTION: Gérer les produits avec une seule image ou plusieurs images
+                let productImage;
+                if (product.images && product.images.length > 0) {
+                    productImage = product.images[0];
+                } else if (product.image) {
+                    productImage = product.image;
+                } else {
+                    productImage = 'https://via.placeholder.com/280x280?text=Image+Manquante';
+                }
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-product-id', product.id);
+                productCard.innerHTML = `
+                    <div class="product-image-container">
+                        <img src="${productImage}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/280x280?text=Image+Manquante'">
+                        <div class="product-actions">
+                            <span class="action-icon quickview-icon" data-action="quickview" data-product-id="${product.id}"><i class="fa-solid fa-eye"></i></span>
+                            <span class="action-icon wishlist-icon" data-action="wishlist" data-product-id="${product.id}"><i class="fa-regular fa-heart"></i></span>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <p class="name">${product.name}</p>
+                        <p class="brand">${product.brand} - ${product.category}</p>
+                        <p class="price">${formattedPrice} <span class="currency">د.ج</span></p>
+                    </div>
+                    <button class="command-button add-to-cart" data-product-id="${product.id}" data-product-name="${product.name}" data-product-price="${product.price}" data-product-image="${productImage}">AJOUTER AU PANIER</button>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+            
+            currentCountSpan.textContent = products.length;
+            totalCountSpan.textContent = allProducts.filter(product => isMenProduct(product)).length;
+            
+            initializeProductEventListeners();
+            updateWishlistIcons();
+        }
+
+        // Fonction pour appliquer les filtres
+        function applyFilters() {
+            console.log("Application des filtres...");
+            
+            // MODIFICATION: S'assurer que seuls les produits pour Hommes sont affichés
+            filteredProducts = allProducts.filter(product => {
+                // Filtrer par genre (toujours inclure les produits pour Hommes)
+                if (!isMenProduct(product)) {
+                    console.log(`Produit exclu: ${product.name} (catégorie: ${product.category})`);
+                    return false;
+                }
+                
+                // Filtrer par prix
+                if (product.price < currentFilters.priceMin || product.price > currentFilters.priceMax) {
+                    console.log(`Produit exclu par prix: ${product.name} (${product.price})`);
+                    return false;
+                }
+                
+                // Filtrer par marque
+                if (currentFilters.brands.length > 0) {
+                    const productBrandValue = product.brand.toLowerCase().replace(/\s+/g, '-');
+                    if (!currentFilters.brands.includes(productBrandValue)) {
+                        console.log(`Produit exclu par marque: ${product.name} (${product.brand})`);
+                        return false;
+                    }
+                }
+                
+                console.log(`Produit inclus: ${product.name}`);
+                return true;
+            });
+            
+            console.log(`Produits filtrés: ${filteredProducts.length}`);
+            displayProducts(filteredProducts);
+            updateActiveFilters();
+        }
+
+        // Fonction pour mettre à jour l'affichage des filtres actifs
+        function updateActiveFilters() {
+            activeFiltersContainer.innerHTML = '';
+            
+            // MODIFICATION: Ajouter un indicateur pour le filtre "Homme" qui est toujours actif
+            const menFilter = document.createElement('div');
+            menFilter.className = 'active-filter-tag';
+            menFilter.innerHTML = `Homme <i class="fas fa-times" data-filter-type="men"></i>`;
+            activeFiltersContainer.appendChild(menFilter);
+            
+            // Ajouter les filtres de prix
+            if (currentFilters.priceMin > 0 || currentFilters.priceMax < 100000) {
+                const priceFilter = document.createElement('div');
+                priceFilter.className = 'active-filter-tag';
+                priceFilter.innerHTML = `Prix: ${currentFilters.priceMin} - ${currentFilters.priceMax} <i class="fas fa-times" data-filter-type="price"></i>`;
+                activeFiltersContainer.appendChild(priceFilter);
+            }
+            
+            // Ajouter les filtres de marque
+            currentFilters.brands.forEach(brandValue => {
+                const brandFilter = document.createElement('div');
+                brandFilter.className = 'active-filter-tag';
+                // Trouver le nom de la marque correspondant à la valeur
+                const brandName = allProducts.find(p => p.brand.toLowerCase().replace(/\s+/g, '-') === brandValue)?.brand || brandValue;
+                brandFilter.innerHTML = `${brandName} <i class="fas fa-times" data-filter-type="brand" data-value="${brandValue}"></i>`;
+                activeFiltersContainer.appendChild(brandFilter);
+            });
+            
+            // Ajouter les filtres de genre
+            currentFilters.genders.forEach(categoryValue => {
+                if (categoryValue !== 'Homme') { // Ne pas afficher le filtre "Homme" deux fois
+                    const genderFilter = document.createElement('div');
+                    genderFilter.className = 'active-filter-tag';
+                    // Trouver le nom de la catégorie correspondant à la valeur
+                    const categoryName = allProducts.find(p => p.category.toLowerCase().replace(/\s+/g, '-') === categoryValue)?.category || categoryValue;
+                    genderFilter.innerHTML = `${categoryName} <i class="fas fa-times" data-filter-type="gender" data-value="${categoryValue}"></i>`;
+                    activeFiltersContainer.appendChild(genderFilter);
+                }
+            });
+            
+            // Ajouter les écouteurs d'événements pour les boutons de suppression de filtre
+            document.querySelectorAll('.active-filter-tag i').forEach(icon => {
+                icon.addEventListener('click', removeFilter);
+            });
+        }
+
+        // Fonction pour supprimer un filtre
+        function removeFilter(e) {
+            const filterType = e.target.getAttribute('data-filter-type');
+            
+            if (filterType === 'price') {
+                currentFilters.priceMin = 0;
+                currentFilters.priceMax = 100000;
+                document.querySelector('.desktop-price-min').value = 0;
+                document.querySelector('.desktop-price-max').value = 100000;
+                document.querySelector('.mobile-price-min').value = 0;
+                document.querySelector('.mobile-price-max').value = 100000;
+            } else if (filterType === 'brand') {
+                const value = e.target.getAttribute('data-value');
+                currentFilters.brands = currentFilters.brands.filter(brand => brand !== value);
+                document.querySelector(`input[name="brand"][value="${value}"]`).checked = false;
+            } else if (filterType === 'gender') {
+                const value = e.target.getAttribute('data-value');
+                currentFilters.genders = currentFilters.genders.filter(gender => gender !== value);
+                document.querySelector(`input[name="gender"][value="${value}"]`).checked = false;
+            } else if (filterType === 'men') {
+                // MODIFICATION: Ne pas permettre de supprimer le filtre "Homme"
+                showNotification("Le filtre 'Homme' ne peut pas être désactivé sur cette page.", 'info');
+                return;
+            }
+            
+            applyFilters();
+        }
+
+        // Fonction pour réinitialiser tous les filtres
+        function resetAllFilters() {
+            currentFilters = {
+                priceMin: 0,
+                priceMax: 100000,
+                brands: [],
+                genders: ['Homme'] // MODIFICATION: Toujours inclure le filtre "Homme"
+            };
+            
+            // Réinitialiser les inputs
+            document.querySelectorAll('.price-input').forEach(input => {
+                if (input.classList.contains('desktop-price-min') || input.classList.contains('mobile-price-min')) {
+                    input.value = 0;
+                } else {
+                    input.value = 100000;
+                }
+            });
+            
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                if (checkbox.value === 'Homme' || checkbox.value.includes('Homme')) {
+                    checkbox.checked = true;
+                    checkbox.disabled = true; // MODIFICATION: Désactiver la case à cocher "Homme"
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+            
+            applyFilters();
+        }
+
+        // Fonction pour initialiser les écouteurs d'événements pour les produits
+        function initializeProductEventListeners() {
+            // Écouteurs pour les boutons wishlist
+            document.querySelectorAll('.wishlist-icon').forEach(button => {
+                button.addEventListener('click', addToWishlist);
+            });
+            
+            // Écouteurs pour les boutons d'ajout au panier
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const productId = this.getAttribute('data-product-id');
+                    const productName = this.getAttribute('data-product-name');
+                    const productPrice = parseFloat(this.getAttribute('data-product-price'));
+                    const productImage = this.getAttribute('data-product-image');
+                    
+                    addToCartFunction(productId, productName, productPrice, productImage);
+                    showNotification('Produit ajouté au panier');
+                });
+            });
+            
+            // Écouteurs pour les icônes quickview
+            document.querySelectorAll('.quickview-icon').forEach(icon => {
+                icon.addEventListener('click', handleQuickViewClick);
+            });
+        }
+        
+        function handleQuickViewClick(e) {
+            e.stopPropagation();
+            const productId = this.getAttribute('data-product-id');
+            openQuickViewModal(productId);
+        }
+
+        // Fonction pour ouvrir le modal quickview
+        async function openQuickViewModal(productId) {
+            try {
+                // Chercher le produit dans la liste locale (allProducts) au lieu de faire un nouvel appel à Firebase
+                const product = allProducts.find(p => p.id === productId);
+
+                if (product) {
+                    document.getElementById('modal-product-name').textContent = product.name;
+                    document.getElementById('modal-product-price').textContent = product.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    document.getElementById('modal-product-category').textContent = `${product.brand} - ${product.category}`;
+                    document.getElementById('modal-product-description').textContent = product.description || 'Aucune description disponible.';
+                    
+                    // CORRECTION: Gérer les produits avec une seule image ou plusieurs images
+                    let productImages;
+                    if (product.images && product.images.length > 0) {
+                        productImages = product.images;
+                    } else if (product.image) {
+                        productImages = [product.image];
+                    } else {
+                        productImages = ['https://via.placeholder.com/350x350?text=Image+Manquante'];
+                    }
+                    
+                    // Stocker l'ID du produit actuel et les données complètes
+                    currentProductId = productId;
+                    
+                    // Afficher le carrousel d'images
+                    setupImageCarousel(productImages, productId);
+                    
+                    quickViewModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    showNotification('Produit non trouvé', 'error');
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération du produit:', error);
+                showNotification('Erreur lors de l\'affichage du produit', 'error');
+            }
+        }
+
+        // Fonction pour configurer le carrousel d'images
+        function setupImageCarousel(images, productId) {
+            const mainImage = document.getElementById('modal-product-image');
+            const thumbnailsContainer = document.getElementById('carousel-thumbnails');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            
+            // Vider les miniatures existantes
+            thumbnailsContainer.innerHTML = '';
+            
+            // Si pas d'images, afficher une image par défaut
+            if (!images || images.length === 0) {
+                mainImage.src = 'https://via.placeholder.com/350x350?text=Image+Manquante';
+                thumbnailsContainer.innerHTML = '<div class="no-images">Aucune image disponible</div>';
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                return;
+            }
+            
+            let currentImageIndex = 0;
+            
+            // Afficher la première image
+            mainImage.src = images[0];
+            
+            // Créer les miniatures
+            images.forEach((image, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                thumbnail.innerHTML = `<img src="${image}" alt="Miniature ${index + 1}" onerror="this.src='https://via.placeholder.com/60x60?text=Error'">`;
+                
+                thumbnail.addEventListener('click', () => {
+                    // Mettre à jour l'image principale
+                    mainImage.src = image;
+                    currentImageIndex = index;
+                    
+                    // Mettre à jour les miniatures actives
+                    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+                    thumbnail.classList.add('active');
+                });
+                
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+            
+            // Gérer le bouton précédent
+            prevBtn.onclick = () => {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                updateCarousel();
+            };
+            
+            // Gérer le bouton suivant
+            nextBtn.onclick = () => {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                updateCarousel();
+            };
+            
+            // Fonction pour mettre à jour le carrousel
+            function updateCarousel() {
+                mainImage.src = images[currentImageIndex];
+                
+                // Mettre à jour les miniatures actives
+                document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                    thumb.classList.toggle('active', index === currentImageIndex);
+                });
+            }
+            
+            // Afficher/masquer les boutons de navigation selon le nombre d'images
+            if (images.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            }
+            
+            // Ajouter un indicateur du nombre d'images
+            const existingCounter = document.querySelector('.image-counter');
+            if (existingCounter) {
+                existingCounter.remove();
+            }
+            
+            if (images.length > 1) {
+                const imageCounter = document.createElement('div');
+                imageCounter.className = 'image-counter';
+                imageCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+                document.querySelector('.main-image-container').appendChild(imageCounter);
+                
+                // Mettre à jour le compteur quand on change d'image
+                const updateCounter = () => {
+                    imageCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+                };
+                
+                // Redéfinir les événements pour inclure la mise à jour du compteur
+                const originalPrev = prevBtn.onclick;
+                const originalNext = nextBtn.onclick;
+                
+                prevBtn.onclick = () => {
+                    originalPrev();
+                    updateCounter();
+                };
+                
+                nextBtn.onclick = () => {
+                    originalNext();
+                    updateCounter();
+                };
+                
+                // Mettre à jour aussi pour les clics sur miniatures
+                document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                    const originalClick = thumb.onclick;
+                    thumb.onclick = () => {
+                        originalClick();
+                        currentImageIndex = index;
+                        updateCounter();
+                    };
+                });
+            }
+        }
+
+        // === FONCTIONS POUR LA WISHLIST ===
+        
+        // Fonction pour mettre à jour l'affichage de la wishlist
+        function updateWishlistDisplay() {
+            const wishlistContent = document.getElementById('wishlist-content');
+            const wishlistCount = document.getElementById('wishlist-count');
+            const mobileWishlistCount = document.getElementById('mobile-wishlist-count');
+            
+            wishlistContent.innerHTML = '';
+            
+            if (wishlist.length === 0) {
+                wishlistContent.innerHTML = '<div class="wishlist-empty"><i class="far fa-heart" style="font-size: 48px; margin-bottom: 15px;"></i><p>Votre wishlist est vide</p></div>';
+                wishlistCount.textContent = '0';
+                mobileWishlistCount.textContent = '0';
+            } else {
+                wishlist.forEach(item => {
+                    const wishlistItem = document.createElement('div');
+                    wishlistItem.className = 'wishlist-item';
+                    wishlistItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="wishlist-item-image">
+                        <div class="wishlist-item-details">
+                            <div class="wishlist-item-name">${item.name}</div>
+                            <div class="wishlist-item-price">${item.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} د.ج</div>
+                            <div class="wishlist-item-actions">
+                                <button class="wishlist-add-to-cart add-to-cart-from-wishlist" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">AJOUTER AU PANIER</button>
+                                <button class="wishlist-item-remove remove-from-wishlist" data-id="${item.id}"><i class="fas fa-trash"></i> Supprimer</button>
+                            </div>
+                        </div>
+                    `;
+                    wishlistContent.appendChild(wishlistItem);
+                });
+                
+                wishlistCount.textContent = wishlist.length;
+                mobileWishlistCount.textContent = wishlist.length;
+                
+                // Ajouter les écouteurs d'événements pour les nouveaux éléments
+                document.querySelectorAll('.remove-from-wishlist').forEach(btn => {
+                    btn.addEventListener('click', removeFromWishlist);
+                });
+                
+                document.querySelectorAll('.add-to-cart-from-wishlist').forEach(btn => {
+                    btn.addEventListener('click', addToCartFromWishlist);
+                });
+            }
+            
+            // Sauvegarder la wishlist dans le localStorage
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        // Fonction pour ouvrir la wishlist
+        function openWishlist() {
+            document.getElementById('wishlist-sidebar').classList.add('active');
+            document.getElementById('wishlist-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fonction pour fermer la wishlist
+        function closeWishlist() {
+            document.getElementById('wishlist-sidebar').classList.remove('active');
+            document.getElementById('wishlist-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Fonction pour ajouter un produit à la wishlist
+        function addToWishlist(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const button = e.currentTarget;
+            const productCard = button.closest('.product-card');
+            const productId = productCard.getAttribute('data-product-id');
+            const productName = productCard.querySelector('.name').textContent;
+            const productPriceText = productCard.querySelector('.price').textContent;
+            const productPrice = parseFloat(productPriceText.replace(/[^\d,]/g, '').replace(',', '.'));
+            
+            // CORRECTION: Récupérer l'image depuis l'attribut data
+            const addToCartButton = productCard.querySelector('.add-to-cart');
+            const productImage = addToCartButton.getAttribute('data-product-image');
+            
+            // Vérifier si le produit est déjà dans la wishlist
+            const existingItem = wishlist.find(item => item.id === productId);
+            
+            if (!existingItem) {
+                // Ajouter le produit à la wishlist
+                wishlist.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    image: productImage
+                });
+                
+                // Mettre à jour l'icône du cœur
+                button.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                button.classList.add('active');
+                
+                // Afficher une notification
+                showNotification('Produit ajouté à la wishlist');
+            } else {
+                // Retirer le produit de la wishlist
+                wishlist = wishlist.filter(item => item.id !== productId);
+                
+                // Mettre à jour l'icône du cœur
+                button.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                button.classList.remove('active');
+                
+                // Afficher une notification
+                showNotification('Produit retiré de la wishlist');
+            }
+            
+            // Mettre à jour l'affichage de la wishlist
+            updateWishlistDisplay();
+        }
+
+        // Fonction pour supprimer un produit de la wishlist
+        function removeFromWishlist(e) {
+            const productId = e.currentTarget.getAttribute('data-id');
+            wishlist = wishlist.filter(item => item.id !== productId);
+            updateWishlistDisplay();
+            showNotification('Produit retiré de la wishlist');
+        }
+
+        // Fonction pour ajouter au panier depuis la wishlist
+        function addToCartFromWishlist(e) {
+            const productId = e.currentTarget.getAttribute('data-id');
+            const productName = e.currentTarget.getAttribute('data-name');
+            const productPrice = parseFloat(e.currentTarget.getAttribute('data-price'));
+            const productImage = e.currentTarget.getAttribute('data-image');
+            
+            // Ajouter au panier
+            addToCartFunction(productId, productName, productPrice, productImage);
+            
+            // Afficher une notification
+            showNotification('Produit ajouté au panier');
+            
+            // Fermer la wishlist
+            closeWishlist();
+        }
+
+        // Fonction pour mettre à jour les icônes de wishlist dans les produits
+        function updateWishlistIcons() {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                const productId = card.getAttribute('data-product-id');
+                const wishlistBtn = card.querySelector('.wishlist-icon');
+                const isInWishlist = wishlist.find(item => item.id === productId);
+                
+                if (isInWishlist) {
+                    wishlistBtn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                    wishlistBtn.classList.add('active');
+                } else {
+                    wishlistBtn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                    wishlistBtn.classList.remove('active');
+                }
+            });
+        }
+
+        // === FONCTIONS POUR LE PANIER ===
+        
+        // Fonction pour mettre à jour l'affichage du panier
+        function updateCartDisplay() {
+            const cartContent = document.getElementById('cart-content');
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            
+            // Vider le contenu du panier
+            cartContent.innerHTML = '';
+            
+            if (cart.length === 0) {
+                // Panier vide
+                cartContent.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>Votre panier est vide</p>
+                    </div>
+                `;
+                cartCount.textContent = '0';
+                mobileCartCount.textContent = '0';
+                cartTotal.textContent = '0,00 د.ج';
+            } else {
+                // Panier avec des articles
+                let total = 0;
+                let itemCount = 0;
+                
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} د.ج</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn decrease-qty" data-id="${item.id}">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+                                <button class="quantity-btn increase-qty" data-id="${item.id}">+</button>
+                                <button class="cart-item-remove remove-item" data-id="${item.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    cartContent.appendChild(cartItem);
+                    
+                    total += item.price * item.quantity;
+                    itemCount += item.quantity;
+                });
+                
+                cartCount.textContent = itemCount;
+                mobileCartCount.textContent = itemCount;
+                cartTotal.textContent = total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' د.ج';
+                
+                // Ajouter les écouteurs d'événements pour les nouveaux éléments
+                document.querySelectorAll('.decrease-qty').forEach(btn => {
+                    btn.addEventListener('click', decreaseQuantity);
+                });
+                
+                document.querySelectorAll('.increase-qty').forEach(btn => {
+                    btn.addEventListener('click', increaseQuantity);
+                });
+                
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.addEventListener('change', updateQuantity);
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', removeFromCart);
+                });
+            }
+            
+            // Sauvegarder le panier dans le localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Fonction pour ouvrir le panier
+        function openCart() {
+            document.getElementById('cart-sidebar').classList.add('active');
+            document.getElementById('cart-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fonction pour fermer le panier
+        function closeCart() {
+            document.getElementById('cart-sidebar').classList.remove('active');
+            document.getElementById('cart-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Fonction pour ajouter un produit au panier
+        function addToCartFunction(productId, productName, productPrice, productImage) {
+            // Vérifier si le produit est déjà dans le panier
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                // Si le produit est déjà dans le panier, augmenter la quantité
+                existingItem.quantity++;
+            } else {
+                // Sinon, ajouter le produit au panier
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1
+                });
+            }
+            
+            // Mettre à jour l'affichage du panier
+            updateCartDisplay();
+        }
+
+        // Fonction pour augmenter la quantité d'un produit
+        function increaseQuantity(e) {
+            const productId = e.currentTarget.getAttribute('data-id');
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                item.quantity++;
+                updateCartDisplay();
+            }
+        }
+
+        // Fonction pour diminuer la quantité d'un produit
+        function decreaseQuantity(e) {
+            const productId = e.currentTarget.getAttribute('data-id');
+            const item = cart.find(item => item.id === productId);
+            
+            if (item && item.quantity > 1) {
+                item.quantity--;
+                updateCartDisplay();
+            }
+        }
+
+        // Fonction pour mettre à jour la quantité d'un produit
+        function updateQuantity(e) {
+            const productId = e.currentTarget.getAttribute('data-id');
+            const newQuantity = parseInt(e.currentTarget.value);
+            const item = cart.find(item => item.id === productId);
+            
+            if (item && newQuantity > 0) {
+                item.quantity = newQuantity;
+                updateCartDisplay();
+            }
+        }
+
+        // Fonction pour supprimer un produit du panier
+        function removeFromCart(e) {
+            const productId = e.currentTarget.getAttribute('data-id');
+            cart = cart.filter(item => item.id !== productId);
+            updateCartDisplay();
+            showNotification('Produit retiré du panier');
+        }
+
+        // === NOUVELLES FONCTIONS POUR LA REDIRECTION VERS CHECKOUT ===
+        
+        // Fonction pour rediriger vers la page de paiement (depuis le panier)
+        function redirectToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Votre panier est vide', 'error');
+                return;
+            }
+            
+            // Préparer les données du panier au format attendu par checkout.html
+            const cartData = {
+                items: cart.map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image,
+                    quantity: item.quantity
+                }))
+            };
+            
+            // Sauvegarder dans localStorage (format compatible avec checkout.html)
+            localStorage.setItem('maa_luxury_cart', JSON.stringify(cartData));
+            
+            // Rediriger vers la page de paiement
+            window.location.href = 'checkout.html';
+        }
+
+        // Fonction pour commander depuis la vue rapide
+        function checkoutFromQuickView() {
+            if (!currentProductId) {
+                showNotification('Erreur: Produit non sélectionné', 'error');
+                return;
+            }
+            
+            const product = allProducts.find(p => p.id === currentProductId);
+            if (!product) {
+                showNotification('Produit non trouvé', 'error');
+                return;
+            }
+            
+            // Récupérer la quantité depuis le modal
+            const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+            
+            // Créer un panier temporaire avec ce seul produit
+            const tempCart = [{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.images?.[0] || product.image,
+                quantity: quantity
+            }];
+            
+            // Préparer les données au format attendu par checkout.html
+            const cartData = {
+                items: tempCart
+            };
+            
+            // Sauvegarder dans localStorage
+            localStorage.setItem('maa_luxury_cart', JSON.stringify(cartData));
+            
+            // Fermer le modal et rediriger
+            closeQuickViewModal();
+            window.location.href = 'checkout.html';
+        }
+
+        // === FONCTIONS POUR LES FILTRES & MODAL ===
+        
+        // Fonction pour fermer le modal quickview
+        function closeQuickViewModal() {
+            quickViewModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Fonction pour rediriger vers cart.html avec le produit
+        function redirectToCartPage() {
+            if (!currentProductId) {
+                showNotification('Erreur: Produit non sélectionné', 'error');
+                return;
+            }
+            
+            const product = allProducts.find(p => p.id === currentProductId);
+            if (!product) {
+                showNotification('Produit non trouvé', 'error');
+                return;
+            }
+            
+            // Récupérer la quantité depuis le modal
+            const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+            
+            // Préparer les données du produit pour cart.html
+            const productData = {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                images: product.images || [product.image],
+                image: product.images?.[0] || product.image,
+                quantity: quantity,
+                brand: product.brand,
+                category: product.category,
+                description: product.description,
+                stock: product.stock || 10
+            };
+            
+            // Sauvegarder le produit dans localStorage avec la clé attendue par cart.html
+            localStorage.setItem('selectedProduct', JSON.stringify(productData));
+            
+            // Fermer le modal et rediriger vers cart.html
+            closeQuickViewModal();
+            window.location.href = 'cart.html';
+        }
+
+        // Fonction pour rediriger vers checkout.html avec le produit
+        function redirectToCheckoutWithProduct() {
+            if (!currentProductId) {
+                showNotification('Erreur: Produit non sélectionné', 'error');
+                return;
+            }
+            
+            const product = allProducts.find(p => p.id === currentProductId);
+            if (!product) {
+                showNotification('Produit non trouvé', 'error');
+                return;
+            }
+            
+            // Récupérer la quantité depuis le modal
+            const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+            
+            // Créer un panier temporaire avec seulement ce produit
+            const checkoutCart = {
+                items: [{
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.images?.[0] || product.image,
+                    images: product.images,
+                    quantity: quantity,
+                    variant: product.variant || 'Standard'
+                }],
+                shippingGoal: 9500,
+                isSingleProduct: true
+            };
+            
+            // Sauvegarder dans localStorage
+            localStorage.setItem('maa_luxury_cart', JSON.stringify(checkoutCart));
+            
+            // Fermer le modal et rediriger
+            closeQuickViewModal();
+            window.location.href = 'checkout.html';
+        }
+
+        // === INITIALISATION AU CHARGEMENT DE LA PAGE ===
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log("=== DÉMARRAGE APPLICATION ===");
+            
+            // Debug Firebase
+            await debugFirebase();
+            
+            // Charger les produits depuis Firebase
+            await loadProductsFromFirebase();
+            
+            // Initialiser l'affichage du panier et de la wishlist
+            updateCartDisplay();
+            updateWishlistDisplay();
+            
+            // Écouteurs d'événements pour le panier
+            document.getElementById('cart-icon').addEventListener('click', openCart);
+            document.getElementById('mobile-cart-icon').addEventListener('click', openCart);
+            document.getElementById('close-cart').addEventListener('click', closeCart);
+            document.getElementById('cart-overlay').addEventListener('click', closeCart);
+            
+            // Écouteurs d'événements pour la wishlist
+            document.getElementById('wishlist-icon').addEventListener('click', openWishlist);
+            document.getElementById('mobile-wishlist-icon').addEventListener('click', openWishlist);
+            document.getElementById('mobile-bottom-wishlist').addEventListener('click', openWishlist);
+            document.getElementById('close-wishlist').addEventListener('click', closeWishlist);
+            document.getElementById('wishlist-overlay').addEventListener('click', closeWishlist);
+            
+            // Écouteurs d'événements pour les filtres desktop
+            document.getElementById('applyPriceFilter').addEventListener('click', function() {
+                currentFilters.priceMin = parseFloat(document.querySelector('.desktop-price-min').value) || 0;
+                currentFilters.priceMax = parseFloat(document.querySelector('.desktop-price-max').value) || 100000;
+                applyFilters();
+            });
+            
+            // Écouteurs d'événements pour les filtres mobiles
+            document.getElementById('mobileFilterToggle').addEventListener('click', function() {
+                document.getElementById('mobileFiltersMenu').classList.add('active');
+                document.getElementById('filtersOverlay').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            function closeMobileFilters() {
+                document.getElementById('mobileFiltersMenu').classList.remove('active');
+                document.getElementById('filtersOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            document.getElementById('closeFilters').addEventListener('click', closeMobileFilters);
+            document.getElementById('filtersOverlay').addEventListener('click', closeMobileFilters);
+            
+            document.getElementById('mobileFilterApply').addEventListener('click', function() {
+                // Appliquer les filtres de prix
+                currentFilters.priceMin = parseFloat(document.querySelector('.mobile-price-min').value) || 0;
+                currentFilters.priceMax = parseFloat(document.querySelector('.mobile-price-max').value) || 100000;
+                
+                // Appliquer les filtres de marque
+                currentFilters.brands = [];
+                document.querySelectorAll('.mobile-filters-menu input[name="brand"]:checked').forEach(checkbox => {
+                    currentFilters.brands.push(checkbox.value);
+                });
+                
+                // Appliquer les filtres de genre
+                currentFilters.genders = ['Homme']; // MODIFICATION: Toujours inclure le filtre "Homme"
+                document.querySelectorAll('.mobile-filters-menu input[name="gender"]:checked').forEach(checkbox => {
+                    if (checkbox.value !== 'Homme') { // Ne pas ajouter "Homme" deux fois
+                        currentFilters.genders.push(checkbox.value);
+                    }
+                });
+                
+                // Synchroniser avec les filtres desktop
+                document.querySelector('.desktop-price-min').value = currentFilters.priceMin;
+                document.querySelector('.desktop-price-max').value = currentFilters.priceMax;
+                
+                document.querySelectorAll('.shop-filters input[name="brand"]').forEach(checkbox => {
+                    checkbox.checked = currentFilters.brands.includes(checkbox.value);
+                });
+                
+                document.querySelectorAll('.shop-filters input[name="gender"]').forEach(checkbox => {
+                    checkbox.checked = currentFilters.genders.includes(checkbox.value);
+                });
+                
+                applyFilters();
+                closeMobileFilters();
+            });
+            
+            document.getElementById('mobileFilterReset').addEventListener('click', function() {
+                resetAllFilters();
+                closeMobileFilters();
+            });
+            
+            // Écouteur pour le bouton de réinitialisation des filtres
+            document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
+            
+            // Écouteurs d'événements pour le modal quickview
+            document.querySelector('.close-modal-btn').addEventListener('click', closeQuickViewModal);
+            quickViewModal.addEventListener('click', function(e) {
+                if (e.target === quickViewModal) {
+                    closeQuickViewModal();
+                }
+            });
+            
+            // Écouteurs pour les boutons de commande
+            document.getElementById('checkout-button').addEventListener('click', redirectToCheckout);
+            document.getElementById('modal-checkout-button').addEventListener('click', redirectToCheckoutWithProduct);
+    // Écouteur pour le bouton "VIEW DETAILS"
+    document.getElementById('view-details-btn').addEventListener('click', redirectToCartPage);
+
+    // Écouteurs d'événements pour les boutons plus et moins pour la quantité
+    const qtyMinus = document.getElementById('qty-minus');
+    const qtyPlus = document.getElementById('qty-plus');
+    const qtyInput = document.getElementById('qty-input');
+    
+    if (qtyMinus && qtyPlus && qtyInput) {
+        qtyMinus.addEventListener('click', function() {
+            if (qtyInput.value > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+        
+        qtyPlus.addEventListener('click', function() {
+            if (qtyInput.value < 100) {
+                qtyInput.value = parseInt(qtyInput.value) + 1;
+            }
+        });
+    }
+});
+
+        // Fonction pour rediriger vers cart.html avec le produit
+// Fonction pour rediriger vers cart.html avec le produit
+// Fonction pour rediriger vers cart.html avec le produit
+function redirectToCartPage() {
+    if (!currentProductId) {
+        showNotification('Erreur: Produit non sélectionné', 'error');
+        return;
+    }
+    
+    const product = allProducts.find(p => p.id === currentProductId);
+    if (!product) {
+        showNotification('Produit non trouvé', 'error');
+        return;
+    }
+    
+    // Récupérer la quantité depuis le modal
+    const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+    
+    // Préparer les données du produit pour cart.html
+    const productData = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        images: product.images || [product.image],
+        image: product.images?.[0] || product.image,
+        quantity: quantity,
+        brand: product.brand,
+        category: product.category,
+        description: product.description,
+        stock: product.stock || 10
+    };
+    
+    // Sauvegarder le produit dans localStorage avec la clé attendue par cart.html
+    localStorage.setItem('selectedProduct', JSON.stringify(productData));
+    
+    // Fermer le modal et rediriger vers cart.html
+    closeQuickViewModal();
+    window.location.href = 'cart.html';
+}
+
+// Fonction pour rediriger vers checkout.html avec le produit
+function redirectToCheckoutWithProduct() {
+    if (!currentProductId) {
+        showNotification('Erreur: Produit non sélectionné', 'error');
+        return;
+    }
+    
+    const product = allProducts.find(p => p.id === currentProductId);
+    if (!product) {
+        showNotification('Produit non trouvé', 'error');
+        return;
+    }
+    
+    // Récupérer la quantité depuis le modal
+    const quantity = parseInt(document.getElementById('qty-input').value) || 1;
+    
+    // Créer un panier temporaire avec seulement ce produit
+    const checkoutCart = {
+        items: [{
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.images?.[0] || product.image,
+            images: product.images,
+            quantity: quantity,
+            variant: product.variant || 'Standard'
+        }],
+        shippingGoal: 9500,
+        isSingleProduct: true
+    };
+    
+    // Sauvegarder dans localStorage
+    localStorage.setItem('maa_luxury_cart', JSON.stringify(checkoutCart));
+    
+    // Fermer le modal et rediriger
+    closeQuickViewModal();
+    window.location.href = 'checkout.html';
+}
+
+// Dans la section d'initialisation, ajoutez cet écouteur :
+document.addEventListener('DOMContentLoaded', async function() {
+    // ... votre code existant ...
+    
+    // Écouteur pour le bouton "VIEW DETAILS"
+    document.getElementById('view-details-btn').addEventListener('click', redirectToCartPage);
+    
+    // ... le reste de votre code d'initialisation ...
+});
+    </script>
+</body>
+</html>

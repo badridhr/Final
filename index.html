@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMELESSWATCHSTORE - Boutique de montres de luxe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    
+    
+</head>
+<body>
+    
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-tiktok"></i>
+        </div>
+        
+        <nav class="navbar">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="TIME<ESS Watch Store" class="logo-img">
+                <span class="logo-subtitle">storetwatch</span>
+            </a>
+            
+            <div class="desktop-nav">
+                <a href="index.html">ACCUEIL</a>
+                <a href="ToutLesProduits.html">BOUTIQUE</a>
+                <a href="contact.html">CONTACTEZ-NOUS</a>
+            </div>
+            
+            <div class="nav-icons">
+                <a href="#" id="wishlist-icon"><i class="far fa-heart"></i><span class="wishlist-count" id="wishlist-count">0</span></a>
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cart-count">0</span></a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Menu mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="menu-header">
+            <div class="menu-logo">TIME&lt;ESS</div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mobile-nav">
+            <a href="index.html"><i class="fas fa-home"></i> ACCUEIL</a>
+            <a href="ToutLesProduits.html"><i class="fas fa-store"></i> BOUTIQUE</a>
+            <a href="Homme.html"><i class="fa-solid fa-person"></i> HOMME</a>
+            <a href="Femme.html"><i class="fa-solid fa-person-dress"></i> FEMME</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> CONTACTEZ-NOUS</a>
+            <a href="#" id="mobile-wishlist-icon"><i class="far fa-heart"></i> WISHLIST</a>
+        </nav>
+    </div>
+    
+    <!-- Overlay pour fermer le menu -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Panier latéral -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">MON PANIER</h3>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">0,00 د.ج</span>
+            </div>
+            <button class="cart-checkout" id="checkout-button">COMMANDER</button>
+        </div>
+    </div>
+    
+    <!-- Wishlist latérale -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3 class="wishlist-title">Mes favoris</h3>
+            <button class="close-wishlist" id="close-wishlist">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wishlist-content" id="wishlist-content">
+            <div class="wishlist-empty">
+                <i class="far fa-heart" style="font-size: 48px; margin-bottom: 15px;"></i>
+                <p>Votre wishlist est vide</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay pour fermer le panier -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    
+    <!-- Overlay pour fermer la wishlist -->
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+    
+    <!-- Section principale -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Timelesswatchstore</h1>
+            <p>Nous sommes représentants officiels de grandes marques de montres. Grâce à notre large sélection, chacun peut trouver la montre idéale. La livraison est gratuite dans les 58 wilayas.</p>
+            <a href="ToutLesProduits.html" class="btn">EXPLORER <i class="fa-solid fa-shop"></i></a>
+        </div>
+    </section>
+    
+    <!-- Barre mobile fixe en bas -->
+    <div class="mobile-bottom-bar">
+        <nav class="mobile-bottom-nav">
+            <a href="#" class="mobile-bottom-item active">
+                <i class="fas fa-store"></i>
+                <span>Shop</span>
+            </a>
+            <a href="#" class="mobile-bottom-item" id="mobile-bottom-wishlist">
+                <i class="far fa-heart"></i>
+                <span>Wishlist</span>
+                <span class="mobile-bottom-count" id="mobile-wishlist-count">0</span>
+            </a>
+            <a href="#" class="mobile-bottom-item" id="mobile-cart-icon">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Panier</span>
+                <span class="mobile-bottom-count cart" id="mobile-cart-count">0</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- WhatsApp flottant -->
+    <a href="https://wa.me/33612345678" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section class="produits-section">
+        <h2 class="section-title">
+            Nous proposons des Montres et des Bijoux pour <span class="highlight"><br> Hommes & Femmes <hr> </span><br>
+            <span class="highlight"></span>
+        </h2>
+
+        <div class="produits-container">
+            <div class="produit-card femmes">
+                <a href="Femme.html"><div class="category-tag">FEMMES</div></a>
+                <a href="Femme.html"><img src="images/femmes.jpg" alt="Montre et Bijoux pour Femmes"></a>
+            </div>
+
+            <div class="produit-card enfants">
+                <a href="Homme.html"><div class="category-tag">HOMME</div></a>
+                <a href="Homme.html"><img src="images/hommes.jpg" alt="Montre pour Hommes"></a>
+            </div>
+
+            <div class="produit-card promotion">
+                <a href="ToutLesProduits.html">                <div class="category-tag promo-text">
+                    PROMO
+                </div></a>
+
+                <a href="ToutLesProduits.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvcP0eQMq-F5gTqJzEd2tLNWEiFMArjGuPCg&s" alt="Promotion"></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands-section">
+        <div class="container">
+            <h2 class="section-title">Découvrez nos marques.</h2>
+            <div class="brands-container">
+                <div class="brand-card">
+                    <img src="images/boss.png" alt="BOSS">
+                </div>
+                <div class="brand-card">
+                    <img src="images/guess.jpg" alt="GUESS">
+                </div>
+                <div class="brand-card">
+                    <img src="images/michaelkors.png" alt="MICHAEL KORS">
+                </div>
+                <div class="brand-card">
+                    <img src="images/rolex.png" alt="ROLEX">
+                </div>
+                <div class="brand-card">
+                    <img src="images/Giorgio.jpg" alt="CASIO">
+                </div>
+                <div class="brand-card">
+                    <img src="images/tissot.jpg" alt="PATEK PHILIPPE">
+                </div>
+            </div>
+        </div>
+        <hr class="full-width-line">
+    </section>
+
+    <header class="header">
+        <h1>Bienvenue chez timelesswatchstore - La boutique N#1 de <span>montres de luxe. <hr></span></h1>
+    </header>
+
+    <main class="products-grid">
+        
+        <div class="product-card" data-product-id="1">
+            <div class="product-image-container">
+                <img src="https://outlet-tunisie.com/1975-large_default/montre-femme-michael-kors-mk5555.jpg" alt="Montre Michael Kors Femme Or">
+                <div class="product-actions">
+  
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">MICHAEL KORS</p>
+                <p class="brand">Michael Kors - Femme</p>
+                <p class="price">38.000,00 <span class="currency">د.ج</span></p>
+            </div>
+<a href="ToutLesProduits.html"></a>               <button class="command-button" data-product-id="1" data-product-name="MICHAEL KORS" data-product-price="38000" data-product-image="https://outlet-tunisie.com/1975-large_default/montre-femme-michael-kors-mk5555.jpg">EXPLORER</button>
+     </div>
+        
+        <div class="product-card" data-product-id="2">
+            <span class="discount-tag">-7%</span>
+            <div class="product-image-container">
+                <img src="https://www.bijourama.com/media/produits/emporio-armani-montres/img/montre-emporio-armani--homme-ar11681_3665969_500x500.jpg" alt="Montre Emporio Armani Femme Rose">
+                <div class="product-actions">
+
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">MONTRE EMPORIO ARMANI</p>
+                <p class="brand">Emporio Armani - Femme</p>
+                <p>
+                    <span class="price-old">42.000,00 <span class="currency">د.ج</span></span>
+                    <span class="price with-discount">39.000,00 <span class="currency">د.ج</span></span>
+                </p>
+            </div>
+<a href="ToutLesProduits.html"></a>              <button class="command-button" data-product-id="2" data-product-name="MONTRE EMPORIO ARMANI" data-product-price="39000" data-product-image="https://www.bijourama.com/media/produits/emporio-armani-montres/img/montre-emporio-armani--homme-ar11681_3665969_500x500.jpg">EXPLORER</button>
+      </div>
+        
+        <div class="product-card featured" data-product-id="3">
+            <div class="product-image-container">
+                <img src="https://www.louispion.fr/media/catalog/product/4/5/4549526382543_1_30a3.jpg?optimize=medium&fit=bounds&height=1000&width=1000&canvas=1000:1000" alt="Montre Casio Homme Argent">
+                <div class="product-actions">
+
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">CASIO HOMME</p>
+                <p class="brand">Casio - Homme</p>
+                <p class="price">35.500,00 <span class="currency">د.ج</span></p>
+            </div>
+<a href="ToutLesProduits.html"></a>                 <button class="command-button" data-product-id="3" data-product-name="CASIO HOMME" data-product-price="35500" data-product-image="https://www.louispion.fr/media/catalog/product/4/5/4549526382543_1_30a3.jpg?optimize=medium&fit=bounds&height=1000&width=1000&canvas=1000:1000">EXPLORER</button>
+   </div>
+
+        <div class="product-card" data-product-id="4">
+            <span class="new-tag">Nouveau</span>
+            <div class="product-image-container">
+                <img src="https://ticktimedz.com/wp-content/uploads/2023/04/F20641_1.webp" alt="Montre Festina Chrono Bike Turquoise">
+                <div class="product-actions">
+
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">FESTINA CRONO BIKE</p>
+                <p class="brand">Festina - Homme</p>
+                <p class="price">32.000,00 <span class="currency">د.ج</span></p>
+            </div>
+            <a href="ToutLesProduits.html">            <button class="command-button" data-product-id="4" data-product-name="FESTINA CRONO BIKE" data-product-price="32000" data-product-image="https://ticktimedz.com/wp-content/uploads/2023/04/F20641_1.webp">EXPLORER</button>
+</a>
+        </div>
+        
+        <div class="product-card" data-product-id="5">
+            <div class="product-image-container">
+                <img src="https://sunplanet.ma/cdn/shop/files/2ca82073-c033-46b3-9b4a-3dec4345650a.png?v=1729682236" alt="Montre 5">
+                <div class="product-actions">
+
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">NOM MONTRE 5</p>
+                <p class="brand">Marque - Genre</p>
+                <p class="price">25.000,00 <span class="currency">د.ج</span></p>
+            </div>
+<a href="ToutLesProduits.html"></a>                   <button class="command-button" data-product-id="5" data-product-name="NOM MONTRE 5" data-product-price="25000" data-product-image="https://sunplanet.ma/cdn/shop/files/2ca82073-c033-46b3-9b4a-3dec4345650a.png?v=1729682236">EXPLORER</button>
+     </div>
+
+        <div class="product-card" data-product-id="6">
+            <span class="discount-tag">-47%</span>
+            <div class="product-image-container">
+                <img src="https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw51c36e24/product-pictures/2ea14f38-887a-4f88-b35f-ef97276e79c2_T137-410-11-091-00_shadow.png?sm=fit&sw=450&sh=450,gravity=center" alt="Montre 6">
+                <div class="product-actions">
+
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">NOM MONTRE 6</p>
+                <p class="brand">Marque - Genre</p>
+                <p>
+                    <span class="price-old">15.000,00 <span class="currency">د.ج</span></span>
+                    <span class="price with-discount">8.000,00 <span class="currency">د.ج</span></span>
+                </p>
+            </div>
+<a href="ToutLesProduits.html"></a>                 <button class="command-button" data-product-id="6" data-product-name="NOM MONTRE 6" data-product-price="8000" data-product-image="https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw51c36e24/product-pictures/2ea14f38-887a-4f88-b35f-ef97276e79c2_T137-410-11-091-00_shadow.png?sm=fit&sw=450&sh=450,gravity=center">EXPLORER</button>
+   </div>
+        
+        <div class="product-card" data-product-id="7">
+            <div class="product-image-container">
+                <img src="https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw8ddb8341/product-pictures/daab9283-862f-4732-abd0-fa955e11d7bd_T137-407-33-041-00_shadow.png?sm=cut&sw=213&sh=280,gravity=center" alt="Montre 7">
+                <div class="product-actions">
+
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">NOM MONTRE 7</p>
+                <p class="brand">Marque - Genre</p>
+                <p class="price">45.000,00 <span class="currency">د.ج</span></p>
+            </div>
+<a href="ToutLesProduits.html"></a>            <button class="command-button" data-product-id="7" data-product-name="NOM MONTRE 7" data-product-price="45000" data-product-image="https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw8ddb8341/product-pictures/daab9283-862f-4732-abd0-fa955e11d7bd_T137-407-33-041-00_shadow.png?sm=cut&sw=213&sh=280,gravity=center">EXPLORER</button>
+        </div>
+        
+        <div class="product-card" data-product-id="8">
+            <div class="product-image-container">
+                <img src="https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw0e8cb087/product-pictures/03fcc26f-3aff-4aef-bdef-df8c850de092_T158-407-11-051-00_Shadow.png?sm=fit&sw=450&sh=450,gravity=center" alt="Montre 8">
+                <div class="product-actions">
+   
+                </div>
+            </div>
+            <div class="product-details">
+                <p class="name">NOM MONTRE 8</p>
+                <p class="brand">Marque - Genre</p>
+                <p class="price">19.999,00 <span class="currency">د.ج</span></p>
+            </div>
+<a href="ToutLesProduits.html"></a>             <button class="command-button" data-product-id="8" data-product-name="NOM MONTRE 8" data-product-price="19999" data-product-image="https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw0e8cb087/product-pictures/03fcc26f-3aff-4aef-bdef-df8c850de092_T158-407-11-051-00_Shadow.png?sm=fit&sw=450&sh=450,gravity=center">EXPLORER</button>
+       </div>
+
+    </main>
+
+    <section class="social-gallery">
+        <div class="container">
+            <header class="gallery-header">
+                <h2 class="username">timelesswatchstore.dz</h2>
+                <p class="tagline">#Suivez Nous Sur Les Réseaux Sociaux</p>
+            </header>
+
+            <div class="image-grid">
+                <a href="https://www.instagram.com/timelesswatchstore.dz/" class="image-item">
+                    <img src="images/photo1.jpeg" alt="Bijoux timelesswatchstore.luxury" loading="lazy">
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/timelesswatchstore.dz/" class="image-item">
+                    <img src="images/photo2.jpeg" alt="Bijoux timelesswatchstore.luxury" loading="lazy">
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/timelesswatchstore.dz/" class="image-item">
+                    <img src="images/photo3.jpeg" alt="Bijoux timelesswatchstore.luxury" loading="lazy">
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/timelesswatchstore.dz/" class="image-item">
+                    <img src="images/photo4.jpeg" alt="Bijoux timelesswatchstore.luxury" loading="lazy">
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/timelesswatchstore.dz/" class="image-item">
+                    <img src="images/photo5.jpg" alt="Bijoux timelesswatchstore.luxury" loading="lazy">
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="usp-section">
+        <div class="container">
+            <div class="usp-grid">
+                
+                <div class="usp-item">
+                    <div class="usp-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="usp-title">RETOUR FACILE 30 JOURS</h3>
+                    <p class="usp-description">Si Vous N'êtes Pas Satisfait, Vous Avez 30 Jours Pour Un Échange Ou Un Remboursement Complet. Votre Satisfaction, Notre Priorité.</p>
+                </div>
+
+                <div class="usp-item">
+                    <div class="usp-icon">
+                         <i class="fa-solid fa-shield"></i>
+                    </div>
+                    <h3 class="usp-title">PAIEMENT SÉCURISÉ</h3>
+                    <p class="usp-description">Vos Données Personnelles Sont Protégées Par Un Cryptage SSL Avancé. Achetez En Toute Confiance.</p>
+                </div>
+
+                <div class="usp-item">
+                    <div class="usp-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="usp-title">SUPPORT 7J/7</h3>
+                    <p class="usp-description">Notre Équipe Dédiée Est Toujours Prête À Répondre À Vos Questions Et Vous Assister, 7 Jours Sur 7.</p>
+                </div>
+
+                <div class="usp-item">
+                    <div class="usp-icon">
+                        <i class="fa-regular fa-gem"></i>
+                    </div>
+                    <h3 class="usp-title">QUALITÉ CERTIFIÉE</h3>
+                    <p class="usp-description">Tous Nos Montres Sont En Moissanite Certifiée, Garantissant Un Éclat Et Une Qualité Supérieure.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section contact-info">
+                <div class="logo-container">
+                    <img src="images/footer.jpg" alt="" width="120px" height="50px">
+                </div>
+
+                <ul class="contact-list">
+                    <li>
+                        <span class="icon">📍</span> avenue Suidani Boudjetimelesswatchstore, Alger
+                    </li>
+                    <li>
+                        <span class="icon">📞</span> +213 (0556 774 148)
+                    </li>
+                    <li>
+                        <span class="icon">📧</span> timelesswatch@store.dz
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section quick-links">
+                <h3>LIENS RAPIDES</h3>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="ToutLesProduits.html">Boutique</a></li>
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section categories">
+                <h3>CATÉGORIES</h3>
+                <ul>
+                    <li><a href="Homme.html">Hommes</a></li>
+                    <li><a href="Femme.html">Femmes</a></li>
+                    <li><a href="ToutLesProduits.html">Promotion</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Copyright © 2025 - TimelessWatchstore Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a>.</p>
+        </div>
+    </footer>
+
+    <script src="navbar.js"></script>
+    <script src="prodtuis.js"></script>
+    
+   <script>
+    // Gestion du bouton COMMANDER
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkoutButton = document.getElementById('checkout-button');
+        
+        if (checkoutButton) {
+            checkoutButton.addEventListener('click', function() {
+                // Récupérer le panier depuis localStorage
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                if (cart.length === 0) {
+                    alert('Votre panier est vide !');
+                    return;
+                }
+                
+                // Convertir le format du panier pour le checkout existant
+                const checkoutCart = {
+                    items: cart.map(item => ({
+                        name: item.name,
+                        price: item.price,
+                        quantity: item.quantity,
+                        image: item.image
+                    }))
+                };
+                
+                // Sauvegarder le panier au format attendu par votre checkout
+                localStorage.setItem('maa_luxury_cart', JSON.stringify(checkoutCart));
+                
+                // Rediriger vers checkout.html
+                window.location.href = 'checkout.html';
+            });
+        }
+        
+        // Mettre à jour l'affichage du panier
+        updateCartDisplay();
+    });
+
+    // Fonction pour mettre à jour l'affichage du panier
+    function updateCartDisplay() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = document.getElementById('cart-count');
+        const mobileCartCount = document.getElementById('mobile-cart-count');
+        const cartTotal = document.getElementById('cart-total');
+        
+        // Mettre à jour le compteur
+        if (cartCount) cartCount.textContent = cart.length;
+        if (mobileCartCount) mobileCartCount.textContent = cart.length;
+        
+        // Calculer le total
+        let total = 0;
+        cart.forEach(item => {
+            total += item.price * item.quantity;
+        });
+        
+        // Mettre à jour le total
+        if (cartTotal) {
+            cartTotal.textContent = total.toLocaleString('fr-FR') + ' د.ج';
+        }
+        
+        // Mettre à jour le contenu du panier
+        updateCartContent();
+    }
+
+    // Fonction pour mettre à jour le contenu du panier
+    function updateCartContent() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartContent = document.getElementById('cart-content');
+        
+        if (!cartContent) return;
+        
+        if (cart.length === 0) {
+            cartContent.innerHTML = `
+                <div class="cart-empty">
+                    <i class="fas fa-shopping-bag" style="font-size: 48px; margin-bottom: 15px;"></i>
+                    <p>Votre panier est vide</p>
+                </div>
+            `;
+        } else {
+            let cartHTML = '';
+            cart.forEach(item => {
+                cartHTML += `
+                    <div class="cart-item" data-product-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-name">${item.name}</h4>
+                            <p class="cart-item-price">${item.price.toLocaleString('fr-FR')} د.ج</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn minus" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn plus" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            cartContent.innerHTML = cartHTML;
+        }
+    }
+
+    // Fonction pour mettre à jour la quantité
+    function updateQuantity(productId, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const itemIndex = cart.findIndex(item => item.id == productId);
+        
+        if (itemIndex !== -1) {
+            cart[itemIndex].quantity += change;
+            
+            if (cart[itemIndex].quantity <= 0) {
+                cart.splice(itemIndex, 1);
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+    }
+
+    // Fonction pour supprimer un produit du panier
+    function removeFromCart(productId) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart = cart.filter(item => item.id != productId);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+    }
+
+    // Initialiser le panier s'il n'existe pas
+    if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', JSON.stringify([]));
+    }
+</script>
+<style>
+    .cart-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        gap: 12px;
+    }
+
+    .cart-item-image {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+
+    .cart-item-details {
+        flex: 1;
+    }
+
+    .cart-item-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .cart-item-price {
+        color: #d4af37;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .cart-item-quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .quantity-btn {
+        width: 25px;
+        height: 25px;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .quantity-btn:hover {
+        background: #f5f5f5;
+    }
+
+    .quantity {
+        font-weight: 600;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    .cart-item-remove {
+        background: none;
+        border: none;
+        color: #ff4444;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 4px;
+    }
+
+    .cart-item-remove:hover {
+        background: #ffebee;
+    }
+
+    .cart-empty {
+        text-align: center;
+        padding: 40px 20px;
+        color: #666;
+    }
+
+    .cart-empty i {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: #ddd;
+    }
+
+    .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 15px;
+        border-top: 2px solid #eee;
+    }
+
+    .cart-checkout {
+        width: 100%;
+        padding: 15px;
+        background: #d4af37;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background 0.3s ease;
+    }
+
+    .cart-checkout:hover {
+        background: #b8941f;
+    }
+
+    .cart-checkout:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+</style>
+</body>
+</html>

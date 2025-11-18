@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - TIMELESS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2d2d2d;
+            --accent: #d4af37;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --white: #ffffff;
+            --gray: #6c757d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .login-container h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .login-container p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert.active {
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            background: var(--light);
+        }
+
+        .admin-header {
+            background: var(--white);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background: var(--primary);
+            color: var(--white);
+            position: fixed;
+            top: 70px;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        .admin-content {
+            margin-left: 250px;
+            margin-top: 70px;
+            padding: 30px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            padding: 12px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-menu li:hover,
+        .sidebar-menu li.active {
+            background: var(--secondary);
+            border-left-color: var(--accent);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+        }
+
+        .stat-icon.products { background: #e3f2fd; color: #1976d2; }
+        .stat-icon.orders { background: #e8f5e8; color: var(--success); }
+        .stat-icon.revenue { background: #fff3e0; color: #ff9800; }
+        .stat-icon.users { background: #fce4ec; color: #e91e63; }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .content-section {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .section-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background: #f8f9fa;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+        }
+
+        .btn-success { background: var(--success); color: white; }
+        .btn-warning { background: var(--warning); color: var(--dark); }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-info { background: var(--info); color: white; }
+
+        .btn-success:hover { background: #218838; }
+        .btn-warning:hover { background: #e0a800; }
+        .btn-danger:hover { background: #c82333; }
+        .btn-info:hover { background: #138496; }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-confirmed { background: #cce5ff; color: #004085; }
+        .status-shipped { background: #d4edda; color: #155724; }
+        .status-delivered { background: #d1ecf1; color: #0c5460; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .notification-badge {
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Quick Access Buttons */
+        .quick-access {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .quick-btn {
+            flex: 1;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .quick-btn-products {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        .quick-btn-orders {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .quick-btn i {
+            font-size: 2rem;
+        }
+
+        /* Image Upload Styles */
+        .image-upload-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .image-upload-box {
+            flex: 1;
+            height: 120px;
+            border: 2px dashed #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-upload-box:hover {
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .image-upload-box img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-upload-box .upload-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+            z-index: 1;
+        }
+
+        .image-upload-box.has-image .upload-placeholder {
+            display: none;
+        }
+
+        .image-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(220, 53, 69, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-upload-box.has-image:hover .image-remove {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                width: 100%;
+                position: static;
+            }
+            
+            .admin-content {
+                margin-left: 0;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-access {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="logo">
+            <i class="fas fa-crown"></i>
+        </div>
+        <h1>TIMELESS ADMIN</h1>
+        <p>Connectez-vous à votre espace d'administration</p>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" class="form-control" id="loginEmail" placeholder="admin@timeless.com" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Mot de passe</label>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Votre mot de passe" required>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <span id="loginText">Se connecter</span>
+                <span id="loginSpinner" class="spinner" style="display: none;"></span>
+            </button>
+        </form>
+        <div id="loginAlert" class="alert alert-error"></div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <!-- Header -->
+        <header class="admin-header">
+            <div>
+                <h1 style="color: var(--primary); font-size: 1.5rem;">
+                    <i class="fas fa-crown" style="color: var(--accent);"></i>
+                    TIMELESS ADMIN
+                </h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <span>Administrateur</span>
+                <button class="btn btn-danger btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <ul class="sidebar-menu">
+                <li class="active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Tableau de bord
+                </li>
+                <li data-tab="products">
+                    <i class="fas fa-swatchbook"></i>
+                    Produits
+                </li>
+                <li data-tab="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    Commandes
+                    <span id="ordersNotification" class="notification-badge" style="display: none;">0</span>
+                </li>
+                <li data-tab="customers">
+                    <i class="fas fa-users"></i>
+                    Clients
+                </li>
+                <li data-tab="settings">
+                    <i class="fas fa-cog"></i>
+                    Paramètres
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Dashboard -->
+            <div id="dashboard" class="content-section">
+                <!-- Quick Access Buttons -->
+                <div class="quick-access">
+                    <div class="quick-btn quick-btn-products" onclick="deleteAllProducts()">
+                        <i class="fas fa-trash"></i>
+                        <span>Supprimer tous les produits</span>
+                    </div>
+                    <div class="quick-btn quick-btn-orders" onclick="deleteAllOrders()">
+                        <i class="fas fa-trash"></i>
+                        <span>Supprimer toutes les commandes</span>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon products">
+                            <i class="fas fa-swatchbook"></i>
+                        </div>
+                        <div class="stat-number" id="totalProducts">0</div>
+                        <div class="stat-label">Produits Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orders">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-number" id="totalOrders">0</div>
+                        <div class="stat-label">Commandes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-number" id="totalRevenue">0 د.ج</div>
+                        <div class="stat-label">Revenu Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" id="totalCustomers">0</div>
+                        <div class="stat-label">Clients</div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h2>Produits Récents</h2>
+                    <button class="btn btn-primary" onclick="showProductModal()">
+                        <i class="fas fa-plus"></i> Nouveau Produit
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Nom</th>
+                                <th>Marque</th>
+                                <th>Catégorie</th>
+                                <th>Prix</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentProducts">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 40px;">
+                                    <div class="spinner"></div>
+                                    <p>Chargement des produits...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Products -->
+            <div id="products" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Gestion des Produits</h2>
+                    <button class="btn btn-primary" onclick="showProductModal()">
+                        <i class="fas fa-plus"></i> Ajouter un produit
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Nom</th>
+                                <th>Marque</th>
+                                <th>Catégorie</th>
+                                <th>Prix</th>
+                                <th>Stock</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTable">
+                            <tr>
+                                <td colspan="8" style="text-align: center; padding: 40px;">
+                                    <div class="spinner"></div>
+                                    <p>Chargement des produits...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Orders -->
+            <div id="orders" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Gestion des Commandes</h2>
+                    <button class="btn btn-primary" onclick="loadOrders()">
+                        <i class="fas fa-sync"></i> Actualiser
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Client</th>
+                                <th>Téléphone</th>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTable">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 40px;">
+                                    <div class="spinner"></div>
+                                    <p>Chargement des commandes...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Customers -->
+            <div id="customers" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Gestion des Clients</h2>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                                <th>Commandes</th>
+                                <th>Dernière visite</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customersTable">
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 40px;">
+                                    <i class="fas fa-users" style="font-size: 3rem; color: #e9ecef; margin-bottom: 15px;"></i>
+                                    <p>Aucun client enregistré</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div id="settings" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Paramètres</h2>
+                </div>
+                <div class="form-group">
+                    <label>Nom de la boutique</label>
+                    <input type="text" class="form-control" value="TIMELESS WATCH STORE">
+                </div>
+                <div class="form-group">
+                    <label>Email de contact</label>
+                    <input type="email" class="form-control" value="contact@timelesswatchstore.dz">
+                </div>
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" class="form-control" value="+213 556 774 148">
+                </div>
+                <div class="form-group">
+                    <label>Adresse</label>
+                    <textarea class="form-control" rows="3">Avenue Suidani Boudjefil, Alger</textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-success">Enregistrer les modifications</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalProductTitle">Ajouter un produit</h3>
+                <button class="close-modal" onclick="closeProductModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <input type="hidden" id="productId">
+                    
+                    <div class="form-group">
+                        <label>Images du produit</label>
+                        <div class="image-upload-container">
+                            <div class="image-upload-box" id="imageBox1" onclick="selectImage(1)">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Image 1</span>
+                                </div>
+                                <button type="button" class="image-remove" onclick="removeImage(1, event)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <img id="productImage1" style="display: none;">
+                            </div>
+                            <div class="image-upload-box" id="imageBox2" onclick="selectImage(2)">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Image 2</span>
+                                </div>
+                                <button type="button" class="image-remove" onclick="removeImage(2, event)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <img id="productImage2" style="display: none;">
+                            </div>
+                            <div class="image-upload-box" id="imageBox3" onclick="selectImage(3)">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Image 3</span>
+                                </div>
+                                <button type="button" class="image-remove" onclick="removeImage(3, event)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <img id="productImage3" style="display: none;">
+                            </div>
+                        </div>
+                        <input type="hidden" id="productImage">
+                        <input type="hidden" id="productImage2">
+                        <input type="hidden" id="productImage3">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productName">Nom du produit *</label>
+                        <input type="text" class="form-control" id="productName" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productBrand">Marque *</label>
+                            <input type="text" class="form-control" id="productBrand" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Catégorie *</label>
+                            <select class="form-control" id="productCategory" required>
+                                <option value="">Sélectionner une catégorie</option>
+                                <option value="homme">Homme</option>
+                                <option value="femme">Femme</option>
+                                <option value="unisexe">Unisexe</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Prix (د.ج) *</label>
+                            <input type="number" class="form-control" id="productPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productStock">Stock *</label>
+                            <input type="number" class="form-control" id="productStock" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea class="form-control" id="productDescription" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn" onclick="closeProductModal()">Annuler</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Enregistrer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Détails de la Commande</h3>
+                <button class="close-modal" onclick="closeOrderModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="orderDetails">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBB8zPrG4MjAqBm1SOxIFQdWtiCmz_v92s",
+            authDomain: "luxur-6b128.firebaseapp.com",
+            projectId: "luxur-6b128",
+            storageBucket: "luxur-6b128.firebasestorage.app",
+            messagingSenderId: "900453735371",
+            appId: "1:900453735371:web:e32188ac6ea261084c344e"
+        };
+
+        // Initialiser Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Références aux collections
+        const productsRef = db.collection('produits');
+        const productsHommeRef = db.collection('produits_homme');
+        const productsFemmeRef = db.collection('produits_femme');
+        const ordersRef = db.collection('orders');
+        const customersRef = db.collection('clients');
+
+        // Variables globales
+        let currentUser = null;
+        let editingProductId = null;
+        let newOrdersCount = 0;
+        let selectedImages = {
+            1: null,
+            2: null,
+            3: null
+        };
+
+        // === AUTHENTIFICATION ===
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const loginText = document.getElementById('loginText');
+            const loginSpinner = document.getElementById('loginSpinner');
+            const loginAlert = document.getElementById('loginAlert');
+
+            loginText.style.display = 'none';
+            loginSpinner.style.display = 'inline-block';
+
+            try {
+                if (email === 'admin@timeless.com' && password === 'admin123') {
+                    currentUser = { email: email, uid: 'demo-admin' };
+                    localStorage.setItem('adminUser', JSON.stringify(currentUser));
+                    showAdminPanel();
+                } else {
+                    throw new Error('Identifiants incorrects');
+                }
+            } catch (error) {
+                loginAlert.textContent = error.message;
+                loginAlert.className = 'alert alert-error active';
+                loginText.style.display = 'inline';
+                loginSpinner.style.display = 'none';
+            }
+        });
+
+        function showAdminPanel() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadDashboardData();
+            loadProducts();
+            setupOrdersListener();
+        }
+
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                currentUser = null;
+                localStorage.removeItem('adminUser');
+                document.getElementById('adminPanel').style.display = 'none';
+                document.getElementById('loginPage').style.display = 'block';
+                document.getElementById('loginForm').reset();
+            }
+        }
+
+        // === DELETE ALL FUNCTIONS ===
+        async function deleteAllProducts() {
+            if (!confirm('⚠️ ATTENTION !\n\nÊtes-vous ABSOLUMENT sûr de vouloir supprimer TOUS les produits ?\n\nCette action est IRRÉVERSIBLE !\n\nTapez "SUPPRIMER" pour confirmer :')) {
+                return;
+            }
+            
+            const confirmation = prompt('Tapez "SUPPRIMER" pour confirmer la suppression de tous les produits :');
+            if (confirmation !== 'SUPPRIMER') {
+                showAlert('Action annulée', 'info');
+                return;
+            }
+            
+            try {
+                // Récupérer tous les produits
+                const snapshot = await productsRef.get();
+                
+                if (snapshot.empty) {
+                    showAlert('Aucun produit à supprimer', 'info');
+                    return;
+                }
+                
+                // Supprimer tous les produits de la collection principale
+                const batch = db.batch();
+                snapshot.forEach(doc => {
+                    batch.delete(doc.ref);
+                });
+                
+                // Supprimer des collections de catégorie
+                const hommeSnapshot = await productsHommeRef.get();
+                hommeSnapshot.forEach(doc => {
+                    batch.delete(doc.ref);
+                });
+                
+                const femmeSnapshot = await productsFemmeRef.get();
+                femmeSnapshot.forEach(doc => {
+                    batch.delete(doc.ref);
+                });
+                
+                await batch.commit();
+                
+                showAlert(`✅ ${snapshot.size} produits ont été supprimés avec succès !`, 'success');
+                
+                // Recharger les données
+                loadProducts();
+                loadDashboardData();
+                
+            } catch (error) {
+                console.error('Erreur suppression produits:', error);
+                showAlert('❌ Erreur lors de la suppression des produits', 'error');
+            }
+        }
+
+        async function deleteAllOrders() {
+            if (!confirm('⚠️ ATTENTION !\n\nÊtes-vous ABSOLUMENT sûr de vouloir supprimer TOUTES les commandes ?\n\nCette action est IRRÉVERSIBLE !\n\nTapez "SUPPRIMER" pour confirmer :')) {
+                return;
+            }
+            
+            const confirmation = prompt('Tapez "SUPPRIMER" pour confirmer la suppression de toutes les commandes :');
+            if (confirmation !== 'SUPPRIMER') {
+                showAlert('Action annulée', 'info');
+                return;
+            }
+            
+            try {
+                // Récupérer toutes les commandes
+                const snapshot = await ordersRef.get();
+                
+                if (snapshot.empty) {
+                    showAlert('Aucune commande à supprimer', 'info');
+                    return;
+                }
+                
+                // Supprimer toutes les commandes
+                const batch = db.batch();
+                snapshot.forEach(doc => {
+                    batch.delete(doc.ref);
+                });
+                
+                await batch.commit();
+                
+                showAlert(`✅ ${snapshot.size} commandes ont été supprimées avec succès !`, 'success');
+                
+                // Réinitialiser le compteur de notifications
+                newOrdersCount = 0;
+                updateOrdersNotification();
+                
+                // Recharger les données
+                loadOrders();
+                loadDashboardData();
+                
+            } catch (error) {
+                console.error('Erreur suppression commandes:', error);
+                showAlert('❌ Erreur lors de la suppression des commandes', 'error');
+            }
+        }
+
+        // === NAVIGATION ===
+        document.querySelectorAll('.sidebar-menu li').forEach(item => {
+            item.addEventListener('click', function() {
+                // Update active menu
+                document.querySelectorAll('.sidebar-menu li').forEach(li => li.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding section
+                const tabId = this.getAttribute('data-tab');
+                showTab(tabId);
+            });
+        });
+
+        function showTab(tabId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(tabId).style.display = 'block';
+            
+            // Load data if needed
+            if (tabId === 'products') {
+                loadProducts();
+            } else if (tabId === 'orders') {
+                loadOrders();
+                newOrdersCount = 0;
+                updateOrdersNotification();
+            } else if (tabId === 'customers') {
+                loadCustomers();
+            }
+        }
+
+        // === IMAGE UPLOAD FUNCTIONS ===
+        function selectImage(imageNumber) {
+            // Create a file input element
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            
+            fileInput.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        // Update the image preview
+                        const imgElement = document.getElementById(`productImage${imageNumber}`);
+                        imgElement.src = event.target.result;
+                        imgElement.style.display = 'block';
+                        
+                        // Update the box class
+                        document.getElementById(`imageBox${imageNumber}`).classList.add('has-image');
+                        
+                        // Store the image data
+                        selectedImages[imageNumber] = event.target.result;
+                        
+                        // Update the hidden input
+                        document.getElementById(`productImage${imageNumber === 1 ? '' : imageNumber}`).value = event.target.result;
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            fileInput.click();
+        }
+
+        function removeImage(imageNumber, event) {
+            event.stopPropagation();
+            
+            // Reset the image preview
+            const imgElement = document.getElementById(`productImage${imageNumber}`);
+            imgElement.src = '';
+            imgElement.style.display = 'none';
+            
+            // Update the box class
+            document.getElementById(`imageBox${imageNumber}`).classList.remove('has-image');
+            
+            // Clear the stored image data
+            selectedImages[imageNumber] = null;
+            
+            // Clear the hidden input
+            document.getElementById(`productImage${imageNumber === 1 ? '' : imageNumber}`).value = '';
+        }
+
+        // === ORDERS FUNCTIONS ===
+        function setupOrdersListener() {
+            ordersRef.onSnapshot(snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === 'added') {
+                        newOrdersCount++;
+                        updateOrdersNotification();
+                        const order = change.doc.data();
+                        showAlert(`Nouvelle commande de ${order.nom} ${order.prenom}`, 'success');
+                    }
+                });
+                loadDashboardData();
+            });
+        }
+
+        function updateOrdersNotification() {
+            const badge = document.getElementById('ordersNotification');
+            if (newOrdersCount > 0) {
+                badge.textContent = newOrdersCount > 99 ? '99+' : newOrdersCount;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        async function loadOrders() {
+            try {
+                const snapshot = await ordersRef.orderBy('timestamp', 'desc').get();
+                const ordersTable = document.getElementById('ordersTable');
+                
+                ordersTable.innerHTML = '';
+                
+                if (snapshot.empty) {
+                    ordersTable.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 40px;">
+                                <i class="fas fa-shopping-cart" style="font-size: 3rem; color: #e9ecef; margin-bottom: 15px;"></i>
+                                <p>Aucune commande trouvée</p>
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    snapshot.forEach(doc => {
+                        const order = doc.data();
+                        const orderId = doc.id;
+                        const row = createOrderRow(order, orderId);
+                        ordersTable.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                console.error('Erreur chargement commandes:', error);
+                showAlert('Erreur lors du chargement des commandes', 'error');
+            }
+        }
+
+        function createOrderRow(order, orderId) {
+            const row = document.createElement('tr');
+            const orderDate = order.date || (order.timestamp ? new Date(order.timestamp.seconds * 1000).toLocaleDateString('fr-FR') : 'N/A');
+            const statusClass = getStatusClass(order.status);
+            const statusText = getStatusText(order.status);
+            
+            row.innerHTML = `
+                <td>${orderId.substring(0, 8)}...</td>
+                <td>${order.nom || 'N/A'} ${order.prenom || ''}</td>
+                <td>${order.telephone || 'N/A'}</td>
+                <td>${orderDate}</td>
+                <td>${order.total ? order.total.toLocaleString('fr-DZ') + ' د.ج' : 'N/A'}</td>
+                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                <td class="actions">
+                    <button class="btn btn-info btn-sm" onclick="viewOrder('${orderId}')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn btn-warning btn-sm" onclick="updateOrderStatus('${orderId}')">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </td>
+            `;
+            return row;
+        }
+
+        function getStatusClass(status) {
+            const statusMap = {
+                'en_attente': 'status-pending',
+                'confirmee': 'status-confirmed',
+                'expediee': 'status-shipped',
+                'livree': 'status-delivered',
+                'annulee': 'status-cancelled'
+            };
+            return statusMap[status] || 'status-pending';
+        }
+
+        function getStatusText(status) {
+            const statusMap = {
+                'en_attente': 'En attente',
+                'confirmee': 'Confirmée',
+                'expediee': 'Expédiée',
+                'livree': 'Livrée',
+                'annulee': 'Annulée'
+            };
+            return statusMap[status] || 'En attente';
+        }
+
+        async function viewOrder(orderId) {
+            try {
+                const doc = await ordersRef.doc(orderId).get();
+                if (doc.exists) {
+                    const order = doc.data();
+                    displayOrderDetails(order, orderId);
+                    showOrderModal();
+                }
+            } catch (error) {
+                console.error('Erreur détails commande:', error);
+                showAlert('Erreur lors du chargement des détails', 'error');
+            }
+        }
+
+        function displayOrderDetails(order, orderId) {
+            const orderDetails = document.getElementById('orderDetails');
+            const orderDate = order.date || (order.timestamp ? new Date(order.timestamp.seconds * 1000).toLocaleDateString('fr-FR') : 'N/A');
+            
+            orderDetails.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h4 style="margin-bottom: 10px; color: var(--primary);">Informations commande</h4>
+                        <p><strong>ID:</strong> ${orderId}</p>
+                        <p><strong>Date:</strong> ${orderDate}</p>
+                        <p><strong>Statut:</strong> <span class="status-badge ${getStatusClass(order.status)}">${getStatusText(order.status)}</span></p>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 10px; color: var(--primary);">Informations client</h4>
+                        <p><strong>Nom:</strong> ${order.nom} ${order.prenom}</p>
+                        <p><strong>Téléphone:</strong> ${order.telephone}</p>
+                        <p><strong>Adresse:</strong> ${order.adresse}, ${order.commune}, ${order.wilaya}</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 15px; color: var(--primary);">Produits commandés</h4>
+                    ${order.produits && order.produits.length > 0 ? 
+                        order.produits.map(product => `
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e9ecef;">
+                                <div>${product.nom} x${product.quantite}</div>
+                                <div>${(product.prix * product.quantite).toLocaleString('fr-DZ')} د.ج</div>
+                            </div>
+                        `).join('') : 
+                        '<p>Aucun produit</p>'
+                    }
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span>Sous-total:</span>
+                        <span>${order.sous_total ? order.sous_total.toLocaleString('fr-DZ') + ' د.ج' : 'N/A'}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span>Frais livraison:</span>
+                        <span>${order.frais_livraison ? order.frais_livraison.toLocaleString('fr-DZ') + ' د.ج' : 'GRATUIT'}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; border-top: 1px solid #dee2e6; padding-top: 8px;">
+                        <span>Total:</span>
+                        <span>${order.total ? order.total.toLocaleString('fr-DZ') + ' د.ج' : 'N/A'}</span>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn" onclick="closeOrderModal()">Fermer</button>
+                    <button type="button" class="btn btn-primary" onclick="updateOrderStatus('${orderId}')">
+                        <i class="fas fa-edit"></i> Modifier statut
+                    </button>
+                </div>
+            `;
+        }
+
+        async function updateOrderStatus(orderId) {
+            const statusOptions = [
+                { value: 'en_attente', text: 'En attente' },
+                { value: 'confirmee', text: 'Confirmée' },
+                { value: 'expediee', text: 'Expédiée' },
+                { value: 'livree', text: 'Livrée' },
+                { value: 'annulee', text: 'Annulée' }
+            ];
+            
+            const currentStatus = await getCurrentOrderStatus(orderId);
+            
+            let optionsHtml = statusOptions.map(option => 
+                `<option value="${option.value}" ${option.value === currentStatus ? 'selected' : ''}>${option.text}</option>`
+            ).join('');
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Modifier statut commande</h3>
+                        <button class="close-modal" onclick="this.closest('.modal').remove()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nouveau statut:</label>
+                            <select class="form-control" id="newOrderStatus">
+                                ${optionsHtml}
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn" onclick="this.closest('.modal').remove()">Annuler</button>
+                            <button type="button" class="btn btn-primary" onclick="saveNewOrderStatus('${orderId}')">
+                                <i class="fas fa-save"></i> Enregistrer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        async function getCurrentOrderStatus(orderId) {
+            try {
+                const doc = await ordersRef.doc(orderId).get();
+                return doc.exists ? doc.data().status : 'en_attente';
+            } catch (error) {
+                return 'en_attente';
+            }
+        }
+
+        async function saveNewOrderStatus(orderId) {
+            const newStatus = document.getElementById('newOrderStatus').value;
+            
+            try {
+                await ordersRef.doc(orderId).update({
+                    status: newStatus,
+                    status_updated_at: new Date().toISOString()
+                });
+                
+                showAlert('Statut mis à jour avec succès', 'success');
+                
+                // Close all modals
+                document.querySelectorAll('.modal').forEach(modal => modal.remove());
+                
+                // Reload orders
+                setTimeout(() => {
+                    loadOrders();
+                    if (document.getElementById('orderModal').classList.contains('active')) {
+                        closeOrderModal();
+                    }
+                }, 500);
+                
+            } catch (error) {
+                console.error('Erreur mise à jour statut:', error);
+                showAlert('Erreur lors de la mise à jour', 'error');
+            }
+        }
+
+        // === PRODUCTS FUNCTIONS ===
+        async function loadProducts() {
+            try {
+                const snapshot = await productsRef.orderBy('date_modification', 'desc').get();
+                const productsTable = document.getElementById('productsTable');
+                const recentProducts = document.getElementById('recentProducts');
+                
+                productsTable.innerHTML = '';
+                recentProducts.innerHTML = '';
+                
+                let count = 0;
+                
+                snapshot.forEach(doc => {
+                    const product = doc.data();
+                    const productId = doc.id;
+                    const row = createProductRow(product, productId);
+                    
+                    productsTable.appendChild(row.cloneNode(true));
+                    
+                    if (count < 5) {
+                        recentProducts.appendChild(row);
+                        count++;
+                    }
+                });
+                
+                if (snapshot.empty) {
+                    const emptyRow = `
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 40px;">
+                                <i class="fas fa-swatchbook" style="font-size: 3rem; color: #e9ecef; margin-bottom: 15px;"></i>
+                                <p>Aucun produit trouvé</p>
+                            </td>
+                        </tr>
+                    `;
+                    productsTable.innerHTML = emptyRow;
+                    recentProducts.innerHTML = emptyRow;
+                }
+                
+                document.getElementById('totalProducts').textContent = snapshot.size;
+                
+            } catch (error) {
+                console.error('Erreur chargement produits:', error);
+                showAlert('Erreur lors du chargement des produits', 'error');
+            }
+        }
+
+        function createProductRow(product, productId) {
+            const row = document.createElement('tr');
+            const imageSrc = product.image || (product.images && product.images.length > 0 ? product.images[0] : null);
+            
+            row.innerHTML = `
+                <td>
+                    ${imageSrc ? 
+                        `<img src="${imageSrc}" alt="${product.nom}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">` : 
+                        '<i class="fas fa-image" style="color: #e9ecef;"></i>'
+                    }
+                </td>
+                <td>${product.nom || 'N/A'}</td>
+                <td>${product.marque || 'N/A'}</td>
+                <td>${product.categorie ? product.categorie.charAt(0).toUpperCase() + product.categorie.slice(1) : 'N/A'}</td>
+                <td>${product.prix ? product.prix.toLocaleString('fr-DZ') + ' د.ج' : 'N/A'}</td>
+                <td>${product.stock !== undefined ? product.stock : 'N/A'}</td>
+                <td>
+                    <span class="status-badge ${product.stock > 0 ? 'status-delivered' : 'status-cancelled'}">
+                        ${product.stock > 0 ? 'En stock' : 'Rupture'}
+                    </span>
+                </td>
+                <td class="actions">
+                    <button class="btn btn-warning btn-sm" onclick="editProduct('${productId}')">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteProduct('${productId}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            return row;
+        }
+
+        function showProductModal() {
+            editingProductId = null;
+            document.getElementById('modalProductTitle').textContent = 'Ajouter un produit';
+            document.getElementById('productForm').reset();
+            
+            // Reset image uploads
+            for (let i = 1; i <= 3; i++) {
+                const imgElement = document.getElementById(`productImage${i}`);
+                imgElement.src = '';
+                imgElement.style.display = 'none';
+                
+                document.getElementById(`imageBox${i}`).classList.remove('has-image');
+                selectedImages[i] = null;
+                document.getElementById(`productImage${i === 1 ? '' : i}`).value = '';
+            }
+            
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        function editProduct(productId) {
+            productsRef.doc(productId).get().then(doc => {
+                if (doc.exists) {
+                    const product = doc.data();
+                    editingProductId = productId;
+                    
+                    document.getElementById('productId').value = productId;
+                    document.getElementById('productName').value = product.nom || '';
+                    document.getElementById('productBrand').value = product.marque || '';
+                    document.getElementById('productCategory').value = product.categorie || '';
+                    document.getElementById('productPrice').value = product.prix || '';
+                    document.getElementById('productStock').value = product.stock || '';
+                    document.getElementById('productDescription').value = product.description || '';
+                    
+                    // Load images
+                    const images = product.images || [];
+                    if (product.image) {
+                        images.unshift(product.image);
+                    }
+                    
+                    // Reset image uploads
+                    for (let i = 1; i <= 3; i++) {
+                        const imgElement = document.getElementById(`productImage${i}`);
+                        imgElement.src = '';
+                        imgElement.style.display = 'none';
+                        
+                        document.getElementById(`imageBox${i}`).classList.remove('has-image');
+                        selectedImages[i] = null;
+                        document.getElementById(`productImage${i === 1 ? '' : i}`).value = '';
+                    }
+                    
+                    // Display existing images
+                    for (let i = 0; i < Math.min(images.length, 3); i++) {
+                        const imageNumber = i + 1;
+                        const imgElement = document.getElementById(`productImage${imageNumber}`);
+                        imgElement.src = images[i];
+                        imgElement.style.display = 'block';
+                        
+                        document.getElementById(`imageBox${imageNumber}`).classList.add('has-image');
+                        selectedImages[imageNumber] = images[i];
+                        document.getElementById(`productImage${imageNumber === 1 ? '' : imageNumber}`).value = images[i];
+                    }
+                    
+                    document.getElementById('modalProductTitle').textContent = 'Modifier le produit';
+                    document.getElementById('productModal').classList.add('active');
+                }
+            });
+        }
+
+        async function deleteProduct(productId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
+                try {
+                    // Récupérer le produit pour connaître sa catégorie
+                    const productDoc = await productsRef.doc(productId).get();
+                    if (productDoc.exists) {
+                        const product = productDoc.data();
+                        const category = product.categorie;
+                        
+                        // Supprimer de la collection principale
+                        await productsRef.doc(productId).delete();
+                        
+                        // Supprimer de la collection de catégorie si elle existe
+                        if (category === 'homme') {
+                            await productsHommeRef.doc(productId).delete();
+                        } else if (category === 'femme') {
+                            await productsFemmeRef.doc(productId).delete();
+                        }
+                        
+                        showAlert('Produit supprimé avec succès', 'success');
+                        loadProducts();
+                        loadDashboardData();
+                    }
+                } catch (error) {
+                    console.error('Erreur suppression:', error);
+                    showAlert('Erreur lors de la suppression', 'error');
+                }
+            }
+        }
+
+        document.getElementById('productForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Collect images
+            const images = [];
+            for (let i = 1; i <= 3; i++) {
+                const imageValue = document.getElementById(`productImage${i === 1 ? '' : i}`).value;
+                if (imageValue) {
+                    images.push(imageValue);
+                }
+            }
+            
+            const productData = {
+                nom: document.getElementById('productName').value,
+                marque: document.getElementById('productBrand').value,
+                categorie: document.getElementById('productCategory').value,
+                prix: parseFloat(document.getElementById('productPrice').value),
+                stock: parseInt(document.getElementById('productStock').value),
+                description: document.getElementById('productDescription').value,
+                images: images,
+                date_modification: new Date().toISOString()
+            };
+            
+            // For backward compatibility, also store the first image as 'image'
+            if (images.length > 0) {
+                productData.image = images[0];
+            }
+
+            try {
+                if (editingProductId) {
+                    // Mettre à jour dans la collection principale
+                    await productsRef.doc(editingProductId).update(productData);
+                    
+                    // Mettre à jour dans la collection de catégorie
+                    const category = productData.categorie;
+                    if (category === 'homme') {
+                        await productsHommeRef.doc(editingProductId).update(productData);
+                    } else if (category === 'femme') {
+                        await productsFemmeRef.doc(editingProductId).update(productData);
+                    }
+                    
+                    showAlert('Produit modifié avec succès', 'success');
+                } else {
+                    productData.date_ajout = new Date().toISOString();
+                    
+                    // Ajouter dans la collection principale
+                    const docRef = await productsRef.add(productData);
+                    const productId = docRef.id;
+                    
+                    // Ajouter dans la collection de catégorie correspondante
+                    const category = productData.categorie;
+                    if (category === 'homme') {
+                        await productsHommeRef.doc(productId).set(productData);
+                    } else if (category === 'femme') {
+                        await productsFemmeRef.doc(productId).set(productData);
+                    }
+                    
+                    showAlert('Produit ajouté avec succès', 'success');
+                }
+                
+                closeProductModal();
+                loadProducts();
+                loadDashboardData();
+                
+            } catch (error) {
+                console.error('Erreur enregistrement produit:', error);
+                showAlert('Erreur lors de l\'enregistrement', 'error');
+            }
+        });
+
+        function showOrderModal() {
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+        }
+
+        // === DASHBOARD FUNCTIONS ===
+        async function loadDashboardData() {
+            try {
+                // Products count
+                const productsSnapshot = await productsRef.get();
+                const totalProducts = productsSnapshot.size;
+                
+                // Orders count and revenue
+                const ordersSnapshot = await ordersRef.get();
+                const totalOrders = ordersSnapshot.size;
+                let totalRevenue = 0;
+                
+                ordersSnapshot.forEach(doc => {
+                    const order = doc.data();
+                    totalRevenue += order.total || 0;
+                });
+                
+                // Customers count
+                const customersSnapshot = await customersRef.get();
+                const totalCustomers = customersSnapshot.size;
+                
+                // Update UI
+                document.getElementById('totalProducts').textContent = totalProducts;
+                document.getElementById('totalOrders').textContent = totalOrders;
+                document.getElementById('totalRevenue').textContent = totalRevenue.toLocaleString('fr-DZ') + ' د.ج';
+                document.getElementById('totalCustomers').textContent = totalCustomers;
+                
+            } catch (error) {
+                console.error('Erreur chargement données:', error);
+            }
+        }
+
+        // === UTILITY FUNCTIONS ===
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} active`;
+            alert.textContent = message;
+            alert.style.position = 'fixed';
+            alert.style.top = '20px';
+            alert.style.right = '20px';
+            alert.style.zIndex = '1001';
+            alert.style.minWidth = '300px';
+            
+            document.body.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 4000);
+        }
+
+        // === CUSTOMERS FUNCTIONS ===
+        async function loadCustomers() {
+            try {
+                const snapshot = await customersRef.get();
+                const customersTable = document.getElementById('customersTable');
+                
+                customersTable.innerHTML = '';
+                
+                if (snapshot.empty) {
+                    customersTable.innerHTML = `
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px;">
+                                <i class="fas fa-users" style="font-size: 3rem; color: #e9ecef; margin-bottom: 15px;"></i>
+                                <p>Aucun client enregistré</p>
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    snapshot.forEach(doc => {
+                        const customer = doc.data();
+                        const customerId = doc.id;
+                        const row = createCustomerRow(customer, customerId);
+                        customersTable.appendChild(row);
+                    });
+                }
+                
+                document.getElementById('totalCustomers').textContent = snapshot.size;
+                
+            } catch (error) {
+                console.error('Erreur chargement clients:', error);
+                showAlert('Erreur lors du chargement des clients', 'error');
+            }
+        }
+
+        function createCustomerRow(customer, customerId) {
+            const row = document.createElement('tr');
+            
+            // Count orders for this customer
+            let orderCount = 0;
+            ordersRef.where('email', '==', customer.email).get().then(snapshot => {
+                orderCount = snapshot.size;
+                row.querySelector('.order-count').textContent = orderCount;
+            });
+            
+            row.innerHTML = `
+                <td>${customer.nom} ${customer.prenom}</td>
+                <td>${customer.email}</td>
+                <td>${customer.telephone}</td>
+                <td class="order-count">0</td>
+                <td>${customer.derniere_visite ? new Date(customer.derniere_visite).toLocaleDateString('fr-FR') : 'N/A'}</td>
+                <td class="actions">
+                    <button class="btn btn-info btn-sm" onclick="viewCustomerOrders('${customer.email}')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </td>
+            `;
+            return row;
+        }
+
+        async function viewCustomerOrders(customerEmail) {
+            try {
+                const snapshot = await ordersRef.where('email', '==', customerEmail).get();
+                
+                if (snapshot.empty) {
+                    showAlert('Ce client n\'a aucune commande', 'info');
+                } else {
+                    let ordersHtml = '';
+                    snapshot.forEach(doc => {
+                        const order = doc.data();
+                        const orderId = doc.id;
+                        const orderDate = order.date || (order.timestamp ? new Date(order.timestamp.seconds * 1000).toLocaleDateString('fr-FR') : 'N/A');
+                        
+                        ordersHtml += `
+                            <div style="padding: 15px; border-bottom: 1px solid #e9ecef;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <div><strong>Commande:</strong> ${orderId.substring(0, 8)}...</div>
+                                    <div><span class="status-badge ${getStatusClass(order.status)}">${getStatusText(order.status)}</span></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div><strong>Date:</strong> ${orderDate}</div>
+                                    <div><strong>Montant:</strong> ${order.total ? order.total.toLocaleString('fr-DZ') + ' د.ج' : 'N/A'}</div>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <button class="btn btn-info btn-sm" onclick="viewOrder('${orderId}')">
+                                        <i class="fas fa-eye"></i> Voir détails
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    const modal = document.createElement('div');
+                    modal.className = 'modal active';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Commandes du client</h3>
+                                <button class="close-modal" onclick="this.closest('.modal').remove()">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                ${ordersHtml}
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                }
+            } catch (error) {
+                console.error('Erreur commandes client:', error);
+                showAlert('Erreur lors du chargement des commandes', 'error');
+            }
+        }
+
+        // === INITIALIZATION ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedUser = localStorage.getItem('adminUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                showAdminPanel();
+            }
+        });
+    </script>
+</body>
+</html>
