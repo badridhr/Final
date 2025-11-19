@@ -1413,15 +1413,26 @@
             .quantity-control { width: 100%; }
             #qty-input { flex: 1; }
         }
+        
+.top-bar {
+    z-index: 9999; /* toujours au-dessus */
+    position: relative; /* nécessaire pour que z-index fonctionne */
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+}
+
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="top-bar">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-tiktok"></i>
+            <a href="https://www.instagram.com/timelesswatchstore.dz/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/timelesswatchstore"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@timelesswatchstore.dz"><i class="fa-brands fa-tiktok"></i></a>
         </div>
         
         <nav class="navbar">
