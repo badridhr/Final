@@ -176,6 +176,8 @@
             left: 0;
             bottom: 0;
             overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 999;
         }
 
         .admin-content {
@@ -183,6 +185,7 @@
             margin-top: 70px;
             padding: 30px;
             min-height: calc(100vh - 70px);
+            transition: margin-left 0.3s ease;
         }
 
         .sidebar-menu {
@@ -550,18 +553,67 @@
             opacity: 1;
         }
 
-        @media (max-width: 768px) {
-            .admin-sidebar {
-                width: 100%;
-                position: static;
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .admin-content {
+                padding: 20px;
             }
             
-            .admin-content {
-                margin-left: 0;
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.3rem;
             }
             
             .form-row {
                 grid-template-columns: 1fr;
+            }
+            
+            .image-upload-container {
+                flex-direction: column;
+            }
+            
+            .image-upload-box {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .admin-sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .admin-content {
+                margin-left: 0;
+                padding: 15px;
             }
             
             .stats-grid {
@@ -570,6 +622,170 @@
             
             .quick-access {
                 flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .admin-header {
+                padding: 10px 15px;
+            }
+            
+            .admin-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .table-container {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+            
+            .actions {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .btn-sm {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .stat-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .login-container h1 {
+                font-size: 1.5rem;
+            }
+            
+            .form-control {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .admin-header {
+                padding: 8px 10px;
+            }
+            
+            .admin-header h1 {
+                font-size: 1rem;
+            }
+            
+            .admin-content {
+                padding: 10px;
+            }
+            
+            .content-section {
+                padding: 15px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.1rem;
+            }
+            
+            .table-container {
+                font-size: 0.8rem;
+            }
+            
+            th, td {
+                padding: 8px 5px;
+            }
+            
+            .btn-sm {
+                padding: 6px 8px;
+                font-size: 0.7rem;
+            }
+            
+            .modal-body {
+                padding: 15px;
+            }
+            
+            .modal-header {
+                padding: 15px;
+            }
+            
+            .modal-header h3 {
+                font-size: 1.2rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .quick-btn {
+                padding: 15px;
+            }
+            
+            .quick-btn i {
+                font-size: 1.5rem;
+            }
+            
+            .quick-btn span {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .admin-sidebar {
+                width: 200px;
+            }
+            
+            .admin-content {
+                margin-left: 200px;
+            }
+            
+            .sidebar-menu li {
+                padding: 10px 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -604,7 +820,10 @@
     <div id="adminPanel" class="admin-panel">
         <!-- Header -->
         <header class="admin-header">
-            <div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <h1 style="color: var(--primary); font-size: 1.5rem;">
                     <i class="fas fa-crown" style="color: var(--accent);"></i>
                     TIMELESS ADMIN
@@ -620,7 +839,7 @@
         </header>
 
         <!-- Sidebar -->
-        <nav class="admin-sidebar">
+        <nav class="admin-sidebar" id="adminSidebar">
             <ul class="sidebar-menu">
                 <li class="active" data-tab="dashboard">
                     <i class="fas fa-tachometer-alt"></i>
@@ -1153,7 +1372,17 @@
                 // Show corresponding section
                 const tabId = this.getAttribute('data-tab');
                 showTab(tabId);
+                
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    document.getElementById('adminSidebar').classList.remove('active');
+                }
             });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            document.getElementById('adminSidebar').classList.toggle('active');
         });
 
         function showTab(tabId) {
