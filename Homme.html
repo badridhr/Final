@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
-    <title>TIMELESSWATCHSTORE - Boutique de montres de luxe pour Hommes</title>
+    <title>WatchStore - Boutique de montres de luxe pour Hommes</title>
     <style>
         /* VOTRE CSS EXISTANT - JE LE CONSERVE TEL QUEL */
         :root {
@@ -1415,15 +1415,25 @@
             .quantity-control { width: 100%; }
             #qty-input { flex: 1; }
         }
+.top-bar {
+    z-index: 9999; /* toujours au-dessus */
+    position: relative; /* nécessaire pour que z-index fonctionne */
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+}
+
     </style>
 </head>
 <body>
       <!-- Header -->
     <header>
         <div class="top-bar">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-tiktok"></i>
+            <a href="https://www.instagram.com/badriidev/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/"><i class="fa-brands fa-tiktok"></i></a>
         </div>
         
         <nav class="navbar">
@@ -1550,7 +1560,7 @@
     <!-- Section principale -->
     <section class="shop-section">
         <header class="header">
-            <h1>Bienvenue chez Timelesswatchstore - La boutique N#1 de montres de luxe <span>pour Hommes.</span></h1>
+            <h1>Bienvenue chez WatchStore - La boutique N#1 de montres de luxe <span>pour Hommes.</span></h1>
         </header>
         
         <button class="mobile-filter-toggle" id="mobileFilterToggle"><i class="fas fa-filter"></i> FILTRER LES PRODUITS</button>
@@ -1693,7 +1703,7 @@
 
                 <ul class="contact-list">
                     <li>
-                        <span class="icon">📍</span> avenue Suidani Boudjetimelesswatchstore, Alger
+                        <span class="icon">📍</span> avenue Suidani BoudjeWatchStore, Alger
                     </li>
                     <li>
                         <span class="icon">📞</span> +213 (0556 774 148)
@@ -1724,7 +1734,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>Copyright © 2025 - TimelessWatchstore Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a>.</p>
+            <p>Copyright © 2025 - WatchStore Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a>.</p>
         </div>
     </footer>
 
