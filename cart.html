@@ -1006,15 +1006,25 @@
                 max-width: 1320px;
             }
         }
+.top-bar {
+    z-index: 9999; /* toujours au-dessus */
+    position: relative; /* nécessaire pour que z-index fonctionne */
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+}
+
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="top-bar">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-tiktok"></i>
+            <a href="https://www.instagram.com/badriidev/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/"><i class="fa-brands fa-tiktok"></i></a>
         </div>
         
         <nav class="navbar">
@@ -1293,7 +1303,7 @@
 
                 <ul class="contact-list">
                     <li>
-                        <span class="icon">📍</span> avenue Suidani Boudjetimelesswatchstore, Alger
+                        <span class="icon">📍</span> avenue Suidani BoudjeWatchStore, Alger
                     </li>
                     <li>
                         <span class="icon">📞</span> +213 (0556 774 148)
@@ -1324,7 +1334,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>Copyright © 2025 - TimelessWatchstore Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a>.</p>
+            <p>Copyright © 2025 - WatchStore Créé par <a href="https://portfolio-o4po.vercel.app">Badridev</a>.</p>
         </div>
     </footer>
     <!-- Firebase SDK -->
