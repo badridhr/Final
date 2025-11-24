@@ -788,6 +788,9 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+            .test a {
+        text-decoration: none;
+    }
     </style>
 </head>
 <body>
@@ -824,10 +827,13 @@
                 <button class="mobile-menu-toggle" id="mobileMenuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h1 style="color: var(--primary); font-size: 1.5rem;">
+                <div class="test">
+              <a href="index.html"><h1 style="color: var(--primary); font-size: 1.5rem;">
                     <i class="fas fa-crown" style="color: var(--accent);"></i>
                     TIMELESS ADMIN
-                </h1>
+                </h1></a></a>
+                </div>
+
             </div>
             <div class="user-info">
                 <div class="user-avatar">A</div>
@@ -1053,7 +1059,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email de contact</label>
-                    <input type="email" class="form-control" value="contact@timelesswatchstore.dz">
+                    <input type="email" class="form-control" value="contact@WatchStore.dz">
                 </div>
                 <div class="form-group">
                     <label>Téléphone</label>
@@ -1233,7 +1239,7 @@
             loginSpinner.style.display = 'inline-block';
 
             try {
-                if (email === 'admin@timeless.com' && password === 'admin123') {
+                if (email === 'admin@timeless.com' && password === 'badri2005') {
                     currentUser = { email: email, uid: 'demo-admin' };
                     localStorage.setItem('adminUser', JSON.stringify(currentUser));
                     showAdminPanel();
